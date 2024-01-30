@@ -1,4 +1,4 @@
-<style>
+<style scoped>
 *{
   box-sizing: border-box;
   padding: 0;
@@ -10,8 +10,15 @@ html{
   min-width: 1450px;
 }
 </style>
+
 <template>
+  <headerMenu/>
   <RouterView></RouterView>
 </template>
+
 <script>
+import HeaderMenu from "@/components/page/headerMenu.vue";
+export default {
+  components: {HeaderMenu}
+}
 </script>

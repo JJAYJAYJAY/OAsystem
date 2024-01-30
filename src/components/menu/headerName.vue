@@ -9,6 +9,7 @@
     flex-direction: row-reverse;
     line-height: 70px;
     gap: 15px;
+    padding-top: 10px;
   }
   .img-div{
     width: 60px;
@@ -28,7 +29,7 @@
     color: #464646;
     position: absolute;
     right: 30px;
-    top:50px;
+    top:60px;
     line-height: normal;
     padding: 5px;
     font-size: x-small;
@@ -44,7 +45,7 @@
 
 <template>
   <div class="mine">
-    <div  @mouseenter="showWindow" @mouseleave="hideWindow"  style="cursor: pointer;">
+    <div  @mouseenter="showWindow" @mouseleave="hideWindow">
       <span>{{ userName }}</span>
       <span ref="quitButton" class="quit" @click="logOut">退出登录</span>
     </div>
