@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import MenuItem from "@/components/menu/menu-item.vue";
+import MenuItem from "@/components/menu/menuItem.vue";
 import HeaderName from "@/components/menu/headerName.vue";
 export default {
   components: {HeaderName, MenuItem},
