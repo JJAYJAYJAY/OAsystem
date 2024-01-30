@@ -1,21 +1,19 @@
 <style>
-
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+html{
+  padding: 0 10px;
+}
 </style>
 <template>
-  <div>
-    {{msg}}
-  </div>
-  <div>
-    {{msg1}}
-  </div>
+<headerMenu/>
 </template>
 <script>
+import HeaderMenu from "./components/page/headerMenu.vue";
 export default {
-  data(){
-    return{
-      msg:'hello world',
-      msg1:'hello'
-    }
-  }
+  components: {HeaderMenu}
 }
 </script>
