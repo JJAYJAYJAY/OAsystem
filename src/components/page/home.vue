@@ -13,12 +13,16 @@ html{
 
 <template>
   <headerMenu/>
-  <RouterView></RouterView>
+  <div class="main-content">
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
-import HeaderMenu from "@/components/page/headerMenu.vue";
+import headerMenu from "@/components/page/headerMenu.vue";
 export default {
-  components: {HeaderMenu}
+  components: {
+    headerMenu
+  }
 }
 </script>

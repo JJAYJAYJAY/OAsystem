@@ -1,11 +1,11 @@
 import {createRouter, createWebHistory} from 'vue-router'
-import app from "@/App.vue";
+import login from "@/components/login/login.vue";
 import home from "@/components/page/home.vue";
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        {path: '/', component: app},
+        {path: '/', component: login},
         {
             path: '/home',
             component: home,
