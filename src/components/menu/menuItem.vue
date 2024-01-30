@@ -3,6 +3,7 @@
     height: 70px;
     line-height: 70px;
     font-size: larger;
+    cursor: pointer;
   }
   li:before{
     content: "";
@@ -33,12 +34,12 @@
     setup() {
       let selected = ref(false);
 
-      emitter.on('cancelSelect', () => {
+      emitter.on('menuCancelSelect', () => {
         selected.value = false;
       });
 
       const selectLi = () => {
-        emitter.emit('cancelSelect');
+        emitter.emit('menuCancelSelect');
         selected.value = true;
       };
 
