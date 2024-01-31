@@ -56,28 +56,22 @@
 
 </template>
 
-<script>
-import {getCurrentInstance} from "vue";
-  export default {
-    setup(){
-      const page=getCurrentInstance()
-      const showWindow = () => {
-        page.refs.quitButton.style.display = 'inline';
-      }
-      const hideWindow = () => {
-        page.refs.quitButton.style.display = 'none';
-      }
+<script setup lang="js">
+  import {getCurrentInstance} from "vue";
+  const props = defineProps({
+    userName: String,
+    userImg: String
+  })
+  const page=getCurrentInstance()
+  const showWindow = () => {
+    page.refs.quitButton.style.display = 'inline';
+  }
+  const hideWindow = () => {
+    page.refs.quitButton.style.display = 'none';
+  }
 
-      //TODO:退出登录需要完善
-      const logOut= () =>{
+  //TODO:退出登录需要完善
+  const logOut= () =>{
 
-      }
-      return {
-        showWindow,
-        hideWindow,
-        logOut
-      }
-    },
-    props:['userName','userImg']
   }
 </script>

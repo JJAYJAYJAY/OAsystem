@@ -82,11 +82,11 @@
       <h2>你好，欢迎！</h2>
       <div class="input-box">
         <span class="input-label">用户名</span>
-        <input type="text" placeholder="请输入用户名" name="username" id="username">
+        <input type="text" placeholder="请输入用户名" name="username" id="username" v-model="username">
       </div>
       <div class="input-box">
         <span class="input-label">密码</span>
-        <input  type="password" placeholder="请输入密码" name="password" id="password">
+        <input  type="password" placeholder="请输入密码" name="password" id="password" v-model="password">
       </div>
       <input class="login-button" type="submit" @click="login($event)" value="登录">
     </div>
@@ -94,15 +94,19 @@
 </template>
 
 <script>
+import {ref} from "vue";
+let username= ref("");
+let password= ref("");
 export default {
   setup() {
     const login = (e) => {
       //TODO 登录逻辑
       e.preventDefault();
     }
-
     return {
-      login
+      login,
+      username,
+      password
     }
   },
   props:['action']

@@ -39,29 +39,17 @@
   </div>
 </template>
 
-<script>
-import MenuItem from "@/components/menu/menuItem.vue";
+<script setup lang="js">
+  import MenuItem from "@/components/menu/menuItem.vue";
 import HeaderName from "@/components/menu/headerName.vue";
-
-export default {
-  components: {HeaderName, MenuItem},
-  setup(){
-    //TODO 转跳需要完善
-    const goSelectTeacher = () => {
-
-    }
-    const goMessage = () => {
-
-    }
-    const goPersonalSpace = () => {
-
-    }
-    return {
-      goSelectTeacher,
-      goMessage,
-      goPersonalSpace
-    }
+  //TODO 转跳需要完善
+  const goSelectTeacher = () => {
 
   }
-}
+  const goMessage = () => {
+
+  }
+  const goPersonalSpace = () => {
+
+  }
 </script>

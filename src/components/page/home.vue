@@ -8,6 +8,7 @@
 html{
   padding: 0 10px;
   min-width: 1450px;
+  background: none;
 }
 </style>
 
@@ -18,11 +19,6 @@ html{
   </div>
 </template>
 
-<script>
+<script setup lang="js">
 import headerMenu from "@/components/page/headerMenu.vue";
-export default {
-  components: {
-    headerMenu
-  }
-}
 </script>

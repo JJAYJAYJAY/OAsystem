@@ -6,9 +6,6 @@
  <loginForm action="#"></loginForm>
 </template>
 
-<script>
+<script setup lang="js">
   import LoginForm from "@/components/login/loginForm.vue";
-  export default {
-    components: {LoginForm}
-  }
 </script>

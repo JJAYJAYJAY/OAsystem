@@ -27,27 +27,21 @@
   <li @click="selectLi" :class="{ 'liSelect': selected }">{{ itemName }}</li>
 </template>
 
-<script>
-  import {ref} from "vue";
+<script setup lang="js">
+  import {ref,defineEmits} from "vue";
   import emitter from "@/components/utils/mitter.js";
-  export default {
-    setup() {
-      let selected = ref(false);
-
-      emitter.on('menuCancelSelect', () => {
-        selected.value = false;
-      });
-
-      const selectLi = () => {
-        emitter.emit('menuCancelSelect');
-        selected.value = true;
-      };
-
-      return {
-        selected,
-        selectLi
-      };
-    },
-    props:['itemName']
-  }
+  const props = defineProps({
+    itemName: String
+  })
+  let selected = ref(false);
+  emitter.on('menuCancelSelect', () => {
+    selected.value = false;
+  });
+  const cancel = () => {
+    selected.value = false;
+  };
+  const selectLi = () => {
+    emitter.emit('menuCancelSelect');
+    selected.value = true;
+  };
 </script>
