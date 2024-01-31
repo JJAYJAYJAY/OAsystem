@@ -28,10 +28,11 @@
 </template>
 
 <script setup lang="js">
-  import {ref,defineEmits} from "vue";
+  import {ref,onMounted} from "vue";
   import emitter from "@/components/utils/mitter.js";
   const props = defineProps({
-    itemName: String
+    itemName: String,
+    selected: Boolean
   })
   let selected = ref(false);
   emitter.on('menuCancelSelect', () => {
@@ -44,4 +45,9 @@
     emitter.emit('menuCancelSelect');
     selected.value = true;
   };
+  onMounted(() => {
+    if(props.selected){
+      selected.value = true;
+    }
+  })
 </script>

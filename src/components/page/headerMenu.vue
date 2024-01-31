@@ -33,15 +33,20 @@
     <ol class="item-menu">
       <menu-item @click="goSelectTeacher" item-name="导师选择"/>
       <menu-item @click="goMessage" item-name="我的消息"/>
-      <menu-item @click="goPersonalSpace" item-name="个人空间"/>
+      <menu-item @click="goPersonalSpace" item-name="个人空间" selected="selected"/>
     </ol>
-    <header-name class="mine" user-name="张三" user-img="../public/test-resouce/loginbackground5.jpg"/>
+    <header-name class="mine" :user-name="userName" user-img="../public/test-resouce/loginbackground5.jpg"/>
   </div>
 </template>
 
 <script setup lang="js">
   import MenuItem from "@/components/menu/menuItem.vue";
-import HeaderName from "@/components/menu/headerName.vue";
+  import HeaderName from "@/components/menu/headerName.vue";
+  import emitter from "@/components/utils/mitter.js";
+  import {onMounted} from "vue";
+  import {useRouter} from "vue-router";
+
+  const router =new useRouter();
   //TODO 转跳需要完善
   const goSelectTeacher = () => {
 
@@ -50,6 +55,7 @@ import HeaderName from "@/components/menu/headerName.vue";
 
   }
   const goPersonalSpace = () => {
-
+    router.push('/home/personalSpace');
+    // emitter.emit('goToPersonalSpace');
   }
 </script>

@@ -97,12 +97,25 @@
 <script setup lang="js">
 import {ref} from "vue";
 import axios from "axios";
+import {useRouter} from "vue-router";
+import 'vant/es/dialog/style';
+import {showDialog} from "vant";
+import emitter from "@/components/utils/mitter.js";
+
 let username= ref("");
 let password= ref("");
-const  props = defineProps({
+const router= useRouter();
+
+const props = defineProps({
     action:String
 })
 
+const showFail = () => {
+  showDialog({
+    title: '登录失败',
+    message: '用户名或密码错误',
+  })
+}
 const login = (e) => {
   //TODO 登录逻辑
   e.preventDefault();
@@ -112,10 +125,19 @@ const login = (e) => {
   }).then(res=>{
       if(res.data.flag){
         //转跳到home
-        console.log(res.data.user)
+        //TOdO 转跳没有做好
+        router.push({
+          path:'/home/personalSpace',
+        })
+      }else {
+        //登录失败
+        showFail();
       }
   }).catch(err=>{
-    console.log(err)
+    showDialog({
+      title: '错误',
+      message: '服务器错误',
+    })
   })
 }
 </script>

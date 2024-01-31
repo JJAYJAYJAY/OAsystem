@@ -12,7 +12,7 @@ html{
 </style>
 
 <template>
-  <headerMenu/>
+  <headerMenu :user-name="userName" />
   <div class="main-content">
     <router-view></router-view>
   </div>
@@ -20,4 +20,7 @@ html{
 
 <script setup lang="js">
 import headerMenu from "@/components/page/headerMenu.vue";
+const props = defineProps({
+  userName:String
+})
 </script>
