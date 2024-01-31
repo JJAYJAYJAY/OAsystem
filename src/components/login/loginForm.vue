@@ -57,6 +57,7 @@
   width: 90%;
   outline: none;
   height: 34px;
+  cursor: text;
 }
 .login-button{
   margin-top:25px ;
@@ -88,27 +89,33 @@
         <span class="input-label">密码</span>
         <input  type="password" placeholder="请输入密码" name="password" id="password" v-model="password">
       </div>
-      <input class="login-button" type="submit" @click="login($event)" value="登录">
+      <button class="login-button" @click="login($event)">登录</button>
     </div>
   </form>
 </template>
 
-<script>
+<script setup lang="js">
 import {ref} from "vue";
+import axios from "axios";
 let username= ref("");
 let password= ref("");
-export default {
-  setup() {
-    const login = (e) => {
-      //TODO 登录逻辑
-      e.preventDefault();
-    }
-    return {
-      login,
-      username,
-      password
-    }
-  },
-  props:['action']
+const  props = defineProps({
+    action:String
+})
+
+const login = (e) => {
+  //TODO 登录逻辑
+  e.preventDefault();
+  axios.post("/login",{
+    username:username.value,
+    password:password.value
+  }).then(res=>{
+      if(res.data.flag){
+        //转跳到home
+        console.log(res.data.user)
+      }
+  }).catch(err=>{
+    console.log(err)
+  })
 }
 </script>

@@ -8,7 +8,6 @@
 html{
   padding: 0 10px;
   min-width: 1450px;
-  background: none;
 }
 </style>
 

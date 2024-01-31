@@ -1,9 +1,15 @@
 <style scoped>
-
+  .background{
+    background: rgb(42, 169, 227);
+    width: 100%;
+    height: 100vh;
+  }
 </style>
 
 <template>
- <loginForm action="#"></loginForm>
+  <div class="background">
+    <loginForm action="#"></loginForm>
+  </div>
 </template>
 
 <script setup lang="js">
