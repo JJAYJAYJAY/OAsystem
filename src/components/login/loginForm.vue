@@ -83,25 +83,29 @@
       <h2>你好，欢迎！</h2>
       <div class="input-box">
         <span class="input-label">用户名</span>
-        <input type="text" placeholder="请输入用户名" name="username" id="username" v-model="username">
+        <input type="text" placeholder="请输入用户名" name="username" id="username" v-model="form.username">
       </div>
       <div class="input-box">
         <span class="input-label">密码</span>
-        <input  type="password" placeholder="请输入密码" name="password" id="password" v-model="password">
+        <input  type="password" placeholder="请输入密码" name="password" id="password" v-model="form.password">
       </div>
-      <button class="login-button" @click="login($event)">登录</button>
+      <button class="login-button" @click="handleSubmit($event)">登录</button>
     </div>
   </form>
 </template>
 
 <script setup lang="js">
-import {ref} from "vue";
-import {useRouter} from "vue-router";
 import 'vant/es/dialog/style';
+import {reactive} from "vue";
+import {useRouter} from "vue-router";
 import {showDialog} from "vant";
+import {login} from "@/services/login.js";
+import headerNameStore from "@/store/headerNameStore.js";
 
-let username= ref("");
-let password= ref("");
+let form= reactive({
+  username: "",
+  password: ""
+})
 
 const router= useRouter();
 
@@ -112,8 +116,28 @@ const showFail = () => {
   })
 }
 
-const login = (e) => {
-  //TODO 登录逻辑
-
+const handleSubmit = (e)=>{
+  e.preventDefault();
+  login({
+    username: form.username,
+    password: form.password
+  }).then((res)=>{
+    if(res.data.flag){
+      headerNameStore().setHeaderInfo(res.data.username,res.data.userImg)
+      switch (res.data.identity){
+        case 0:
+          router.push("/studentPersonalSpace");
+          break;
+        case 1:
+          router.push("/teacher");
+          break;
+        case 2:
+          router.push("/admin");
+          break;
+      }
+    }else{
+      showFail();
+    }
+  })
 }
 </script>

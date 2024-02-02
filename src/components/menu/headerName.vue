@@ -46,11 +46,11 @@
 <template>
   <div class="mine">
     <div  @mouseenter="showWindow" @mouseleave="hideWindow">
-      <span>{{ userName }}</span>
+      <span>{{ headerNameStore.headerInfo.username }}</span>
       <span ref="quitButton" class="quit" @click="logOut">退出登录</span>
     </div>
     <div class="img-div">
-      <img :src="userImg" alt=""/>
+      <img :src="headerNameStore.headerInfo.userImg" alt="加载失败"/>
     </div>
   </div>
 
@@ -60,6 +60,7 @@
   import {getCurrentInstance} from "vue";
   import useHeaderNameStore from "@/store/headerNameStore.js";
 
+  const headerNameStore=useHeaderNameStore();
 
   const page=getCurrentInstance()
   const showWindow = () => {

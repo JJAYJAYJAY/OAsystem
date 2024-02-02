@@ -29,12 +29,12 @@
 
 <script setup lang="js">
   import {ref,onMounted} from "vue";
-  import emitter from "@/components/utils/mitter.js";
+  import emitter from "@/utils/mitter.js";
   const props = defineProps({
     itemName: String,
     selected: Boolean
   })
-  let selected = ref(false);
+  const selected = ref(false);
   emitter.on('menuCancelSelect', () => {
     selected.value = false;
   });

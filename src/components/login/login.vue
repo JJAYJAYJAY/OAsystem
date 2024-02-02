@@ -1,14 +1,14 @@
 <style scoped>
-  .background{
-    background: rgb(42, 169, 227);
-    width: 100%;
-    height: 100vh;
-  }
+.background{
+  background: rgb(42, 169, 227);
+  width: 100%;
+  height: 100vh;
+}
 </style>
 
 <template>
   <div class="background">
-    <loginForm action="#"></loginForm>
+      <LoginForm action="#"/>
   </div>
 </template>
 

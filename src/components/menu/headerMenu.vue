@@ -31,11 +31,11 @@
   <div class="header-menu">
     <div class="menu-title">德育导师双向选择系统</div>
     <ol class="item-menu">
-      <menu-item @click="goSelectTeacher" item-name="导师选择"/>
+      <menu-item @click="goSelectTeacher" item-name="相关信息"/>
       <menu-item @click="goMessage" item-name="我的消息"/>
       <menu-item @click="goPersonalSpace" item-name="个人空间" selected="selected"/>
     </ol>
-    <header-name class="mine" :user-name="userName" user-img="../public/test-resouce/loginbackground5.jpg"/>
+    <header-name class="mine"/>
   </div>
 </template>
 

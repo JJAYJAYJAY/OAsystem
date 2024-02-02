@@ -12,12 +12,13 @@ html{
 </style>
 
 <template>
-  <headerMenu />
-  <div class="main-content">
-    <router-view></router-view>
-  </div>
+  <default-layout>
+    <div>
+      个人空间
+    </div>
+  </default-layout>
 </template>
 
 <script setup lang="js">
-import headerMenu from "@/components/menu/headerMenu.vue";
+import defaultLayout from "@/layout/defaultLayout.vue";
 </script>

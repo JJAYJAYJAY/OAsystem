@@ -10,7 +10,7 @@ html{
 }
 </style>
 <template>
-  <RouterView></RouterView>
+  <RouterView/>
 </template>
 <script>
 
