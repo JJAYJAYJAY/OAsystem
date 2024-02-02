@@ -58,10 +58,9 @@
 
 <script setup lang="js">
   import {getCurrentInstance} from "vue";
-  const props = defineProps({
-    userName: String,
-    userImg: String
-  })
+  import useHeaderNameStore from "@/store/headerNameStore.js";
+
+
   const page=getCurrentInstance()
   const showWindow = () => {
     page.refs.quitButton.style.display = 'inline';

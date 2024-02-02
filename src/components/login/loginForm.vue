@@ -74,7 +74,7 @@
 </style>
 
 <template>
-  <form class="login-box" :action="action" method="post">
+  <form class="login-box" method="post">
     <div class="login-photo">
       <img src="../../../public/test-resouce/login.png" alt="加载失败">
     </div>
@@ -96,19 +96,14 @@
 
 <script setup lang="js">
 import {ref} from "vue";
-import axios from "axios";
 import {useRouter} from "vue-router";
 import 'vant/es/dialog/style';
 import {showDialog} from "vant";
-import emitter from "@/components/utils/mitter.js";
 
 let username= ref("");
 let password= ref("");
-const router= useRouter();
 
-const props = defineProps({
-    action:String
-})
+const router= useRouter();
 
 const showFail = () => {
   showDialog({
@@ -116,28 +111,9 @@ const showFail = () => {
     message: '用户名或密码错误',
   })
 }
+
 const login = (e) => {
   //TODO 登录逻辑
-  e.preventDefault();
-  axios.post("/login",{
-    username:username.value,
-    password:password.value
-  }).then(res=>{
-      if(res.data.flag){
-        //转跳到home
-        //TOdO 转跳没有做好
-        router.push({
-          path:'/home/personalSpace',
-        })
-      }else {
-        //登录失败
-        showFail();
-      }
-  }).catch(err=>{
-    showDialog({
-      title: '错误',
-      message: '服务器错误',
-    })
-  })
+
 }
 </script>

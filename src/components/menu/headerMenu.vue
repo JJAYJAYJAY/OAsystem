@@ -42,8 +42,7 @@
 <script setup lang="js">
   import MenuItem from "@/components/menu/menuItem.vue";
   import HeaderName from "@/components/menu/headerName.vue";
-  import emitter from "@/components/utils/mitter.js";
-  import {onMounted} from "vue";
+
   import {useRouter} from "vue-router";
 
   const router =new useRouter();
@@ -55,7 +54,6 @@
 
   }
   const goPersonalSpace = () => {
-    router.push('/home/personalSpace');
-    // emitter.emit('goToPersonalSpace');
+
   }
 </script>
