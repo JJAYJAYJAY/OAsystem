@@ -101,6 +101,7 @@ import {useRouter} from "vue-router";
 import {showDialog} from "vant";
 import {login} from "@/services/login.js";
 import headerNameStore from "@/store/headerNameStore.js";
+import loginStore from "@/store/LoginStore.js";
 
 let form= reactive({
   username: "",
@@ -124,9 +125,10 @@ const handleSubmit = (e)=>{
   }).then((res)=>{
     if(res.data.flag){
       headerNameStore().setHeaderInfo(res.data.username,res.data.userImg)
+      loginStore().setLogin(true,res.data.userId);
       switch (res.data.identity){
         case 0:
-          router.push("/studentPersonalSpace");
+          router.push("/studentApp/PersonalSpace");
           break;
         case 1:
           router.push("/teacher");

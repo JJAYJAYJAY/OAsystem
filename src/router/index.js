@@ -1,11 +1,11 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import login from "@/components/login/login.vue";
 import studentPersonalSpace from "@/page/student/personalPage/personalSpace.vue";
-import studentInfo from "@/page/student/information/info.vue";
 import message from "@/page/student/message/message.vue";
 import method from "@/page/student/information/method.vue";
 import teacherList from "@/page/student/information/teacherList.vue";
 import infohome from "@/page/student/information/infohome.vue";
+import studentApp from "@/page/student/studentApp.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -15,17 +15,16 @@ const router = createRouter({
             component: login
         },
         {
-            name: 'studentPersonalSpace',
-            path: '/StudentPersonalSpace',
-            component: studentPersonalSpace,
-        },
-        {
-            name:'studentInfo',
-            path: '/studentInfo',
-            component: studentInfo,
+            path: '/studentApp',
+            component: studentApp,
             children: [
                 {
-                    path: 'home',
+                    name: 'PersonalSpace',
+                    path: 'PersonalSpace',
+                    component: studentPersonalSpace,
+                },
+                {
+                    path: 'infoHome',
                     component: infohome
                 },
                 {
@@ -35,13 +34,14 @@ const router = createRouter({
                 {
                     path: 'method',
                     component: method
+                },
+                {
+                    path: 'message',
+                    component: message
                 }
             ]
         },
-        {
-            path: '/message',
-            component: message
-        }
+
     ]
 })
 

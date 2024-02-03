@@ -31,29 +31,12 @@
   <div class="header-menu">
     <div class="menu-title">德育导师双向选择系统</div>
     <ol class="item-menu">
-      <menu-item @click="goSelectTeacher" item-name="相关信息"/>
-      <menu-item @click="goMessage" item-name="我的消息"/>
-      <menu-item @click="goPersonalSpace" item-name="个人空间" selected="selected"/>
+      <slot></slot>
     </ol>
     <header-name class="mine"/>
   </div>
 </template>
 
 <script setup lang="js">
-  import MenuItem from "@/components/menu/menuItem.vue";
-  import HeaderName from "@/components/menu/headerName.vue";
-
-  import {useRouter} from "vue-router";
-
-  const router =new useRouter();
-  //TODO 转跳需要完善
-  const goSelectTeacher = () => {
-
-  }
-  const goMessage = () => {
-
-  }
-  const goPersonalSpace = () => {
-
-  }
+  import HeaderName from "@/components/menu/headerName.vue"
 </script>
