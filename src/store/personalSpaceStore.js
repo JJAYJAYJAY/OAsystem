@@ -8,17 +8,17 @@ const usePersonalSpaceStore = defineStore(
             studentNumber: '',
             classes: '',
             phone: '',
-            PoliticalStatus: '',
+            politicalStatus: '',
             email: '',
             home:'',
             interesting:'',
             careerDirection:'',
         })
-        const setPersonalSpaceInfo = (studentNumber,classes,phone,PoliticalStatus,email,home,interesting,careerDirection) => {
+        const setPersonalSpaceInfo = (studentNumber,classes,phone,politicalStatus,email,home,interesting,careerDirection) => {
             personalSpaceInfo.studentNumber = studentNumber
             personalSpaceInfo.classes = classes
             personalSpaceInfo.phone = phone
-            personalSpaceInfo.PoliticalStatus = PoliticalStatus
+            personalSpaceInfo.politicalStatus = politicalStatus
             personalSpaceInfo.email = email
             personalSpaceInfo.home = home
             personalSpaceInfo.interesting = interesting

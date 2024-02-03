@@ -22,6 +22,7 @@ html{
   background: rgba(255, 255, 255, 0.8);
   border-radius: 10px;
   padding: 20px;
+  height: 1000px;
 }
 .changeButton{
   float: right;
@@ -33,7 +34,17 @@ html{
   margin-top: 20px;
   position: relative;
   left: 70%;
-  top:-100px;
+  top:-220px;
+}
+.goPanel{
+  position: relative;
+  top: 100px;
+}
+.detailInfo{
+  position: relative;
+  top: 50px;
+  left: 20px;
+  width: 70%;
 }
 </style>
 
@@ -42,12 +53,16 @@ html{
     <div class="content">
       <change-button class="changeButton"/>
       <person-space-header class="person-space-header"/>
+      <detail-info class="detailInfo"/>
       <personal-info-card class="personSpaceCard"/>
+      <personal-space-go-panel class="goPanel"/>
     </div>
   </div>
 </template>
 
 <script setup lang="js">
+import detailInfo from "@/components/personalSapce/detailInfo.vue";
+import personalSpaceGoPanel from "@/components/personalSapce/personalSpaceGoPanel.vue";
 import ChangeButton from "@/components/personalSapce/changeButton.vue";
 import PersonSpaceHeader from "@/components/personalSapce/personSpaceHeader.vue";
 import PersonalInfoCard from "@/components/personalSapce/personalInfoCard.vue";
@@ -66,7 +81,7 @@ onMounted(()=>{
         res.data.studentNumber,
         res.data.classes,
         res.data.phone,
-        res.data.PoliticalStatus,
+        res.data.politicalStatus,
         res.data.email,
         res.data.home,
         res.data.interesting,
