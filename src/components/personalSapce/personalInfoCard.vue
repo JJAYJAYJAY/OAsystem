@@ -33,6 +33,7 @@
   gap: 10px;
   padding-top: 10px;
   padding-left: 20px;
+  padding-right: 10px;
 }
 </style>
 
@@ -50,8 +51,8 @@
       ——————————
     </div>
     <div class="classIdDiv">
-      <div><span>学号：</span><span style="text-align: center;font-size: small">{{personalSpaceStore.personalSpaceInfo.studentNumber}}</span></div>
-      <div><span>班级：</span><span style="text-align: center;font-size: small">{{personalSpaceStore.personalSpaceInfo.classes}}</span></div>
+      <div style="display:flex;"><span style="width: 30%">学号：</span><span style="text-align: center;font-size: small;white-space: pre-wrap;height: 40px">{{personalSpaceStore.personalSpaceInfo.studentNumber}}</span></div>
+      <div style="display:flex;"><span style="width: 30%">班级：</span><span style="text-align: center;font-size: small;white-space: pre-wrap;height: 40px">{{personalSpaceStore.personalSpaceInfo.classes}}</span></div>
     </div>
   </div>
 </template>

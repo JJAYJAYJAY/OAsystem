@@ -1,16 +1,144 @@
 <style scoped>
 .editForm{
   margin: 0 auto;
+  width: 600px;
+  background: #ffffff;
   display: block;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+.form-title{
+  width: 100%;
+  text-align: center;
+  font-size: xx-large;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.buttonDiv *{
+  width: 80px;
+  height: 40px;
+  font-size: medium;
+  margin-left: 50px;
 }
 </style>
 
 <template>
-
+  <a-form class="editForm" :rules="rules" :model="form" @submit-success="handleSubmit" @submit-failed="this.$message.error('修改失败')">
+    <div class="form-title">修改信息</div>
+    <a-form-item field="phone_number" label="联系方式" validate-trigger="blur">
+      <a-input v-model="form.phone_number" plac eholder="请输入手机号" />
+    </a-form-item>
+    <a-form-item field="email" label="邮箱" validate-trigger="blur">
+      <a-input v-model="form.email" placeholder="请输入邮箱" />
+    </a-form-item>
+    <a-form-item field="political_status" label="政治面貌" required>
+      <a-select v-model="form.political_status" placeholder="请选择政治面貌" allow-clear>
+        <a-option value="群众">群众</a-option>
+        <a-option value="团员">团员</a-option>
+        <a-option value="党员">党员</a-option>
+      </a-select>
+    </a-form-item>
+    <a-form-item field="home_address" label="家庭住址" required>
+      <a-input v-model="form.home_address"  placeholder="请输入家庭住址"/>
+    </a-form-item>
+    <a-form-item field="interesting" label="兴趣爱好" required>
+      <a-input v-model="form.interesting"  placeholder="请输入兴趣爱好"/>
+    </a-form-item>
+    <a-form-item field="employment_intention" label="职业方向" required>
+      <a-input v-model="form.employment_intention"  placeholder="请输入职业方向" />
+    </a-form-item>
+    <a-form-item>
+      <a-space class="buttonDiv">
+        <a-button type="primary" shape="round" html-type="submit">提交</a-button>
+        <a-button type="primary" shape="round" @click="close()">关闭</a-button>
+      </a-space>
+    </a-form-item>
+  </a-form>
 </template>
 
 <script setup lang="js">
-  import {reactive, ref} from "vue";
+  import {reactive,getCurrentInstance} from "vue";
+  import {Message} from "@arco-design/web-vue";
   import usePersonalSpaceStore from "@/store/personalSpaceStore.js";
-  const form  = reactive(usePersonalSpaceStore().personalSpaceInfo);
+  import emitter from "@/utils/mitter.js";
+  import {changeUserInfo,getUserInfo} from "@/services/user.js";
+
+  const personalSpaceStore = usePersonalSpaceStore();
+  const form  = reactive({
+    name: personalSpaceStore.personalSpaceInfo.name,
+    phone_number: personalSpaceStore.personalSpaceInfo.phone,
+    email: personalSpaceStore.personalSpaceInfo.email,
+    political_status: personalSpaceStore.personalSpaceInfo.politicalStatus,
+    home_address: personalSpaceStore.personalSpaceInfo.home,
+    interesting: personalSpaceStore.personalSpaceInfo.interesting,
+    employment_intention: personalSpaceStore.personalSpaceInfo.careerDirection
+  })
+  const rules={
+    phone_number:[
+      {required:true,message:'请输入手机号'},
+      {
+        validator:(value,callback)=>{
+          if(/^1[3-9]\d{9}$/.test(value)){
+            callback();
+          }else{
+            callback('请输入正确的手机号');
+          }
+        }
+      }
+    ],
+    email:[
+      {required:true,message:'请输入邮箱'},
+      {
+        validator:(value,callback)=>{
+          if(/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(value)){
+            callback();
+          }else{
+            callback('请输入正确的邮箱');
+          }
+        }
+      }
+    ],
+    political_status:[
+      {required:true,message:'请选择政治面貌'},
+      {match:/群众|团员|党员/,message:'请选择政治面貌'}
+    ],
+    home_address:[
+      {required:true,message:'请输入家庭住址'}
+    ],
+    interesting:[
+      {required:true,message:'请输入兴趣爱好'}
+    ],
+    employment_intention:[
+      {required:true,message:'请输入职业方向'}
+    ]
+  }
+  const page=getCurrentInstance();
+  const close = ()=>{
+    emitter.emit("closeEditForm");
+  }
+  function handleSubmit(){
+    changeUserInfo(form).then(res=>{
+      if(res.status === 200){
+        getUserInfo().then(res=>{
+          const student=res.data.Student;
+          personalSpaceStore.setPersonalSpaceInfo(
+              student.name,
+              student.image,
+              student.student_id,
+              student.class_room,
+              student.phone_number,
+              student.political_status,
+              student.email,
+              student.home_address,
+              student.interesting,
+              student.employment_intention
+          )
+        })
+        Message.success("修改成功")
+        close();
+      }
+    })
+  }
+
 </script>

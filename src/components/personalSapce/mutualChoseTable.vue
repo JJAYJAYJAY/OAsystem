@@ -71,10 +71,6 @@ ul li span {
   line-height: 50px; /* 设置与容器高度相同的line-height，实现垂直居中 */
 }
 
-.inputBox{
-  width: 80px;
-}
-
 .innerFooter {
   border-top:2px solid rgba(128, 128, 128, 0.8);
   border-bottom:2px solid rgba(128, 128, 128, 0.8);
@@ -106,9 +102,10 @@ ul li span {
 }
 .returnButton{
   cursor: pointer;
+  text-decoration: underline;
 }
 .returnButton:hover{
-  color: #000;
+  color: #0675e3;
 }
 </style>
 <template>
@@ -127,22 +124,11 @@ ul li span {
             </span>
             <span>详情</span>
           </li>
-          <li>
-            <span>第一轮选择</span>
-            <span>
-              <input type="text" class="inputBox">
-            </span>
-            <span>
-              <img src="/public/img/火箭.png" class="footerImg">
-            </span>
-            <span>
-              {{selectStatus}}
-            </span>
-          </li>
+          <select-item title="第一轮选择" :teacher="teacher" have-send select-status="未发送"/>
         </ul>
       </div>
       <div class="innerFooter">
-        <div class="allFont">流程</div>
+        <div class="allFont">双向选择流程</div>
         <div class="innerItem">
           <span class="footerItem">
             <img src="/public/img/stuStart.png"  class="footerImg firstImgChange">
@@ -168,9 +154,10 @@ ul li span {
 <script setup lang="js">
 import { useRouter } from "vue-router";
 import {ref} from "vue";
+import SelectItem from "@/components/personalSapce/selectItem.vue";
 
 const lastTime = ref("10天10小时10分钟");
-const selectStatus = ref("未选择");
+const teacher = ref("张三");
 const router = useRouter();
 const goPersonalSpace = () => {
   router.push("personalSpace");

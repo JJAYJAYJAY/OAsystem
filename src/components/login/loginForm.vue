@@ -128,24 +128,24 @@ const handleSubmit = (e)=>{
     if(res.status === 200 && res.data.access_token){
       axios.defaults.headers.common['Authorization'] = `${res.data.token_type} ${res.data.access_token}`;
       loginStore().setLogin(true,res.data.access_token);
-
-      getUserInfo({}).then(res=>{
-        const PersonalSpaceStore = usePersonalSpaceStore();
-        PersonalSpaceStore.setPersonalSpaceInfo(
-            res.data.name,
-            res.data.user_img,
-            res.data.student_number,
-            res.data.class_room,
-            res.data.phone_number,
-            res.data.political_status,
-            res.data.email,
-            res.data.home_address,
-            res.data.interesting,
-            res.data.employment_intention,
-        )
-      })
       switch (res.data.user_type){
         case 0:
+          getUserInfo().then(res=>{
+            const PersonalSpaceStore = usePersonalSpaceStore();
+            let student=res.data.Student
+            PersonalSpaceStore.setPersonalSpaceInfo(
+                student.name,
+                student.image,
+                student.student_id,
+                student.class_room,
+                student.phone_number,
+                student.political_status,
+                student.email,
+                student.home_address,
+                student.interesting,
+                student.employment_intention,
+            )
+          })
           router.push("/studentApp/PersonalSpace");
           break;
         case 1:

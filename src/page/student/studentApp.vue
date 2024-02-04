@@ -19,7 +19,6 @@
   import HeaderMenu from "@/components/menu/headerMenu.vue";
 
   const router =new useRouter();
-  //TODO 转跳需要完善
   const goInfo = () => {
     router.push("infoHome");
   }

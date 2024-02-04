@@ -9,37 +9,39 @@
     display: flex;
   }
 
-  textarea {
+  .infoSpan {
     border: 1px solid transparent;
-    word-wrap: break-word;
+    white-space: pre-wrap;
     resize: none;
+    width: 250px;
+    height: 50px;
   }
 </style>
 <template>
   <div class="form-container">
     <span>
       <label for="contact">联系方式：</label>
-      <textarea id="contact" disabled>{{phone}}</textarea>
+      <span id="contact"  class="infoSpan">{{phone}}</span>
     </span>
     <span>
       <label for="politics">政治面貌：</label>
-      <textarea id="politics"> {{ politics }} </textarea>
+      <span id="politics" class="infoSpan"> {{ politics }} </span>
     </span>
     <span>
       <label for="email">邮箱：</label>
-      <textarea id="email">{{email}}</textarea>
+      <span id="email" class="infoSpan">{{email}}</span>
     </span>
     <span>
       <label for="address">家庭住址：</label>
-      <textarea id="address">{{home}}</textarea>
+      <span id="address" class="infoSpan">{{home}}</span>
     </span>
     <span>
       <label for="career">职业方向：</label>
-      <textarea id="career">{{career}}</textarea>
+      <span id="career" class="infoSpan">{{career}}</span>
     </span>
     <span>
       <label for="interest">兴趣方向：</label>
-      <textarea id="interest">{{interesting}}</textarea>
+      <span id="interest" class="infoSpan">{{interesting}}</span>
     </span>
   </div>
 </template>

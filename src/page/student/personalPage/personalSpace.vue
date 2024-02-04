@@ -56,14 +56,14 @@ html{
 <template>
   <div class="background">
     <div class="content">
-      <change-button class="changeButton"/>
+      <change-button @click="openEditForm" class="changeButton"/>
       <person-space-header class="person-space-header"/>
       <detail-info class="detailInfo"/>
       <personal-info-card class="personSpaceCard"/>
       <personal-space-go-panel class="goPanel"/>
-<!--      <van-overlay show="show" class="overlay">-->
-<!--        <edit-form class="editForm"/>-->
-<!--      </van-overlay>-->
+      <van-overlay :show="overlayShow" class="overlay">
+        <edit-form class="editForm"/>
+      </van-overlay>
     </div>
   </div>
 </template>
@@ -75,13 +75,22 @@ import ChangeButton from "@/components/personalSapce/changeButton.vue";
 import PersonSpaceHeader from "@/components/personalSapce/personSpaceHeader.vue";
 import PersonalInfoCard from "@/components/personalSapce/personalInfoCard.vue";
 import editForm from "@/components/personalSapce/editForm.vue";
-import {onMounted} from "vue";
+import {onMounted,ref} from "vue";
+import emitter from "@/utils/mitter.js";
 import {getUserInfo} from "@/services/user.js";
 import loginStore from "@/store/LoginStore.js";
 import usePersonalSpaceStore from "@/store/personalSpaceStore.js";
 
+
 onMounted(()=>{
   document.title = "个人空间";
+})
+const overlayShow = ref(false);
+const openEditForm = ()=>{
+  overlayShow.value = true;
+}
+emitter.on('closeEditForm',()=>{
+  overlayShow.value = false;
 })
 
 </script>
