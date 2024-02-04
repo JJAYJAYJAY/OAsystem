@@ -46,6 +46,11 @@ html{
   left: 20px;
   width: 70%;
 }
+.overlay{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 </style>
 
 <template>
@@ -56,6 +61,9 @@ html{
       <detail-info class="detailInfo"/>
       <personal-info-card class="personSpaceCard"/>
       <personal-space-go-panel class="goPanel"/>
+<!--      <van-overlay show="show" class="overlay">-->
+<!--        <edit-form class="editForm"/>-->
+<!--      </van-overlay>-->
     </div>
   </div>
 </template>
@@ -66,6 +74,7 @@ import personalSpaceGoPanel from "@/components/personalSapce/personalSpaceGoPane
 import ChangeButton from "@/components/personalSapce/changeButton.vue";
 import PersonSpaceHeader from "@/components/personalSapce/personSpaceHeader.vue";
 import PersonalInfoCard from "@/components/personalSapce/personalInfoCard.vue";
+import editForm from "@/components/personalSapce/editForm.vue";
 import {onMounted} from "vue";
 import {getUserInfo} from "@/services/user.js";
 import loginStore from "@/store/LoginStore.js";
@@ -73,21 +82,6 @@ import usePersonalSpaceStore from "@/store/personalSpaceStore.js";
 
 onMounted(()=>{
   document.title = "个人空间";
-  getUserInfo({
-    userId:loginStore().loginSession.userId
-  }).then(res=>{
-    const PersonalSpaceStore = usePersonalSpaceStore();
-    PersonalSpaceStore.setPersonalSpaceInfo(
-        res.data.studentNumber,
-        res.data.classes,
-        res.data.phone,
-        res.data.politicalStatus,
-        res.data.email,
-        res.data.home,
-        res.data.interesting,
-        res.data.careerDirection
-    )
-  })
 })
 
 </script>

@@ -46,21 +46,20 @@
 <template>
   <div class="mine">
     <div  @mouseenter="showWindow" @mouseleave="hideWindow">
-      <span>{{ headerNameStore.headerInfo.username }}</span>
+      <span>{{ personalSpaceStore.personalSpaceInfo.name }}</span>
       <span ref="quitButton" class="quit" @click="logOut">退出登录</span>
     </div>
     <div class="img-div">
-      <img :src="headerNameStore.headerInfo.userImg" alt="加载失败"/>
+      <img :src="personalSpaceStore.personalSpaceInfo.userImg" alt="加载失败"/>
     </div>
   </div>
-
 </template>
 
 <script setup lang="js">
   import {getCurrentInstance} from "vue";
-  import useHeaderNameStore from "@/store/headerNameStore.js";
+  import usePersonalSpaceStore from "@/store/personalSpaceStore.js";
 
-  const headerNameStore=useHeaderNameStore();
+  const personalSpaceStore = usePersonalSpaceStore();
 
   const page=getCurrentInstance()
   const showWindow = () => {

@@ -6,11 +6,11 @@ const loginStore = defineStore(
     () => {
         const loginSession = reactive({
             loginType: "null",
-            userId: "",
+            userToken: "",
         });
-        const setLogin = (loginType, userId) => {
+        const setLogin = (loginType,userToken) => {
             loginSession.loginType = loginType;
-            loginSession.userId = userId;
+            loginSession.userToken = userToken;
         }
         return {
             loginSession,

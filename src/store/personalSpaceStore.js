@@ -5,6 +5,8 @@ const usePersonalSpaceStore = defineStore(
     'personalSpace',
     () => {
         const personalSpaceInfo =reactive( {
+            name: '',
+            userImg: '',
             studentNumber: '',
             classes: '',
             phone: '',
@@ -14,7 +16,9 @@ const usePersonalSpaceStore = defineStore(
             interesting:'',
             careerDirection:'',
         })
-        const setPersonalSpaceInfo = (studentNumber,classes,phone,politicalStatus,email,home,interesting,careerDirection) => {
+        const setPersonalSpaceInfo = (name,img,studentNumber,classes,phone,politicalStatus,email,home,interesting,careerDirection) => {
+            personalSpaceInfo.name = name
+            personalSpaceInfo.userImg = img
             personalSpaceInfo.studentNumber = studentNumber
             personalSpaceInfo.classes = classes
             personalSpaceInfo.phone = phone
@@ -24,6 +28,7 @@ const usePersonalSpaceStore = defineStore(
             personalSpaceInfo.interesting = interesting
             personalSpaceInfo.careerDirection = careerDirection
         }
+
         return {
             personalSpaceInfo,
             setPersonalSpaceInfo

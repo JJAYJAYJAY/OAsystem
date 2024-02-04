@@ -30,6 +30,6 @@
 </template>
 
 <script setup lang="js">
-  import useHeaderNameStore from "@/store/headerNameStore.js";
-  const name = useHeaderNameStore().headerInfo.username;
+  import usePersonalSpaceStore from "@/store/personalSpaceStore.js";
+  const name = usePersonalSpaceStore().personalSpaceInfo.name
 </script>

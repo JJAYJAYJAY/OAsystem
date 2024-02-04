@@ -100,8 +100,10 @@ import {reactive} from "vue";
 import {useRouter} from "vue-router";
 import {showDialog} from "vant";
 import {login} from "@/services/login.js";
-import headerNameStore from "@/store/headerNameStore.js";
 import loginStore from "@/store/LoginStore.js";
+import axios from "axios";
+import {getUserInfo} from "@/services/user.js";
+import usePersonalSpaceStore from "@/store/personalSpaceStore.js";
 
 let form= reactive({
   username: "",
@@ -123,10 +125,26 @@ const handleSubmit = (e)=>{
     username: form.username,
     password: form.password
   }).then((res)=>{
-    if(res.data.flag){
-      headerNameStore().setHeaderInfo(res.data.username,res.data.userImg)
-      loginStore().setLogin(true,res.data.userId);
-      switch (res.data.identity){
+    if(res.status === 200 && res.data.access_token){
+      axios.defaults.headers.common['Authorization'] = `${res.data.token_type} ${res.data.access_token}`;
+      loginStore().setLogin(true,res.data.access_token);
+
+      getUserInfo({}).then(res=>{
+        const PersonalSpaceStore = usePersonalSpaceStore();
+        PersonalSpaceStore.setPersonalSpaceInfo(
+            res.data.name,
+            res.data.user_img,
+            res.data.student_number,
+            res.data.class_room,
+            res.data.phone_number,
+            res.data.political_status,
+            res.data.email,
+            res.data.home_address,
+            res.data.interesting,
+            res.data.employment_intention,
+        )
+      })
+      switch (res.data.user_type){
         case 0:
           router.push("/studentApp/PersonalSpace");
           break;

@@ -40,10 +40,10 @@
   <div class="personalInfoBackground">
     <div class="nameImgeDiv">
       <div class="img-div">
-        <img :src="headerNameStore.headerInfo.userImg" alt="加载失败"/>
+        <img :src="personalSpaceStore.personalSpaceInfo.userImg" alt="加载失败"/>
       </div>
       <div>
-        <span>{{ headerNameStore.headerInfo.username }}</span>
+        <span>{{ personalSpaceStore.personalSpaceInfo.name }}</span>
       </div>
     </div>
     <div style="text-align: center;color: #a1a1a1;user-select: none">
@@ -57,8 +57,6 @@
 </template>
 
 <script setup lang="js">
-  import useHeaderNameStore from "@/store/headerNameStore.js";
   import usePersonalSpaceStore from "@/store/personalSpaceStore.js";
-  const headerNameStore = useHeaderNameStore();
   const personalSpaceStore = usePersonalSpaceStore();
 </script>
