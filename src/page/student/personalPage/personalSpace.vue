@@ -77,13 +77,18 @@ import PersonalInfoCard from "@/components/personalSapce/personalInfoCard.vue";
 import editForm from "@/components/personalSapce/editForm.vue";
 import {onMounted,ref} from "vue";
 import emitter from "@/utils/mitter.js";
-import {getUserInfo} from "@/services/user.js";
-import loginStore from "@/store/LoginStore.js";
-import usePersonalSpaceStore from "@/store/personalSpaceStore.js";
+import {getTeacherList} from "@/services/user.js";
+import useTeacherStore from "@/store/teacherstore.js";
 
 
 onMounted(()=>{
   document.title = "个人空间";
+  getTeacherList({
+    start:0,
+    end:10
+  }).then((res)=>{
+    useTeacherStore().setTeacherInfo(res.data.total,[]);
+  })
 })
 const overlayShow = ref(false);
 const openEditForm = ()=>{

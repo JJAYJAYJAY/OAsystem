@@ -9,9 +9,6 @@ li{
 }
 
 .allFont{
-  /* font-weight:200; */
-  /* color: silver; */
-  /* font-family: tahoma, arial, "Hiragino Sans GB", 宋体, sans-serif; */
   color: rgba(128, 128, 128, 0.8);
   font-style: italic;
   margin-top: 5px;
@@ -21,11 +18,6 @@ li{
 
 .bottomFont{
   color: rgba(128, 128, 128, 0.8);
-  /* font-style: italic; */
-  /* margin-top: 2px; */
-  /*margin-bottom: 5px;*/
-  /*margin-left: 2px;*/
-  /*margin-right: 25px;*/
 }
 .out {
   width: 800px;
@@ -154,7 +146,7 @@ ul li span {
 <script setup lang="js">
 import { useRouter } from "vue-router";
 import {ref} from "vue";
-import SelectItem from "@/components/personalSapce/selectItem.vue";
+import SelectItem from "@/components/personalSapce/mutualChoseItem.vue";
 
 const lastTime = ref("10天10小时10分钟");
 const teacher = ref("张三");

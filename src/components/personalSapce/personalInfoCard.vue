@@ -6,7 +6,7 @@
   border-radius: 10px;
   box-shadow: 0 15px 20px 0 #868686;
 }
-.nameImgeDiv{
+.nameImgDiv{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,7 +39,7 @@
 
 <template>
   <div class="personalInfoBackground">
-    <div class="nameImgeDiv">
+    <div class="nameImgDiv">
       <div class="img-div">
         <img :src="personalSpaceStore.personalSpaceInfo.userImg" alt="加载失败"/>
       </div>

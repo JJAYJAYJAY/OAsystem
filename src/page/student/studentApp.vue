@@ -13,7 +13,6 @@
 
 <script setup lang="js">
   import MenuItem from "@/components/menu/menuItem.vue";
-  import HeaderName from "@/components/menu/headerName.vue";
 
   import {useRouter} from "vue-router";
   import HeaderMenu from "@/components/menu/headerMenu.vue";

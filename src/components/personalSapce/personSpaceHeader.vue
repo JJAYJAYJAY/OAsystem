@@ -24,12 +24,11 @@
 
 <template>
   <div class="personSpaceHeaderBackground">
-    <span class="welcomeFont1">你好，{{name}}!</span>
+    <span class="welcomeFont1">你好，{{usePersonalSpaceStore().personalSpaceInfo.name}}!</span>
     <span class="welcomeFont2">欢迎来到德育导师双向选择系统!</span>
   </div>
 </template>
 
 <script setup lang="js">
   import usePersonalSpaceStore from "@/store/personalSpaceStore.js";
-  const name = usePersonalSpaceStore().personalSpaceInfo.name
 </script>

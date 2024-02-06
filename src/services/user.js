@@ -16,10 +16,11 @@ export function changeUserInfo(data) {
         baseURL: env.DEV_URL
     })
 }
-export function getTeacherList() {
+export function getTeacherList(data) {
     return axios.request({
         url: "/get_teacher_list",
-        method: "get",
+        method: "post",
+        data,
         baseURL: env.DEV_URL
     })
 }

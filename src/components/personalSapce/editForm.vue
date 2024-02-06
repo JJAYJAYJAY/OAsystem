@@ -58,7 +58,7 @@
 </template>
 
 <script setup lang="js">
-  import {reactive,getCurrentInstance} from "vue";
+import {reactive, getCurrentInstance, ref} from "vue";
   import {Message} from "@arco-design/web-vue";
   import usePersonalSpaceStore from "@/store/personalSpaceStore.js";
   import emitter from "@/utils/mitter.js";
@@ -113,7 +113,7 @@
       {required:true,message:'请输入职业方向'}
     ]
   }
-  const page=getCurrentInstance();
+  getCurrentInstance();
   const close = ()=>{
     emitter.emit("closeEditForm");
   }

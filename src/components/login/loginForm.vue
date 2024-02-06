@@ -42,7 +42,7 @@
   align-items: center;
   margin-top: 30px;
   border-radius: 5px;
-  padding: 5px 0px;
+  padding: 5px 0;
 }
 .input-box span{
   padding: 5px;
@@ -135,7 +135,7 @@ const handleSubmit = (e)=>{
             let student=res.data.Student
             PersonalSpaceStore.setPersonalSpaceInfo(
                 student.name,
-                student.image,
+                "data:image/gif;base64,"+student.image,
                 student.student_id,
                 student.class_room,
                 student.phone_number,
