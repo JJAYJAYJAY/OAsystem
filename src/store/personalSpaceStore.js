@@ -15,8 +15,10 @@ const usePersonalSpaceStore = defineStore(
             home:'',
             interesting:'',
             careerDirection:'',
+            honors:'',
+            projectExperience:'',
         })
-        const setPersonalSpaceInfo = (name,img,studentNumber,classes,phone,politicalStatus,email,home,interesting,careerDirection) => {
+        const setPersonalSpaceInfo = (name,img,studentNumber,classes,phone,politicalStatus,email,home,interesting,careerDirection,projectExperience,honors) => {
             personalSpaceInfo.name = name
             personalSpaceInfo.userImg = img
             personalSpaceInfo.studentNumber = studentNumber
@@ -27,6 +29,8 @@ const usePersonalSpaceStore = defineStore(
             personalSpaceInfo.home = home
             personalSpaceInfo.interesting = interesting
             personalSpaceInfo.careerDirection = careerDirection
+            personalSpaceInfo.projectExperience = projectExperience
+            personalSpaceInfo.honors = honors
         }
 
         return {

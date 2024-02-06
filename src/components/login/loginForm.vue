@@ -144,6 +144,8 @@ const handleSubmit = (e)=>{
                 student.home_address,
                 student.interesting,
                 student.employment_intention,
+                student.project_experience,
+                student.honors,
             )
           })
           router.push("/studentApp/PersonalSpace");
