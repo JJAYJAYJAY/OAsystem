@@ -69,6 +69,9 @@ html{
       <van-overlay :show="overlayShow" class="overlay">
         <edit-form class="editForm"/>
       </van-overlay>
+      <van-overlay :show="showChangePassword" class="overlay">
+        <change-password/>
+      </van-overlay>
     </div>
   </div>
 </template>
@@ -85,6 +88,7 @@ import emitter from "@/utils/mitter.js";
 import {getTeacherList, getUserInfo} from "@/services/user.js";
 import useTeacherStore from "@/store/teacherstore.js";
 import ProjectHonor from "@/components/personalSapce/projectHonor.vue";
+import ChangePassword from "@/components/personalSapce/changePassword.vue";
 
 
 onMounted(()=>{
@@ -97,6 +101,14 @@ onMounted(()=>{
   })
 })
 const overlayShow = ref(false);
+const showChangePassword = ref(false);
+
+emitter.on('openChangePassword',()=>{
+  showChangePassword.value = true;
+})
+emitter.on('closeChangePassword',()=>{
+  showChangePassword.value = false;
+})
 const openEditForm = ()=>{
   overlayShow.value = true;
 }

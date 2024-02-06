@@ -65,4 +65,13 @@ export function sendSelectedTable(data){
     })
 }
 
+export function changePassword(data){
+    setToken();
+    return axios.request({
+        url: "/change_password",
+        method: "post",
+        data: data,
+        baseURL: env.DEV_URL
+    })
+}
 export const changeImgAction=env.DEV_URL+"/change_img";

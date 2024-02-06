@@ -24,6 +24,7 @@
   height: 150px;
   margin-top: 20px;
   padding: 10px;
+  white-space: pre-line;
 }
 </style>
 

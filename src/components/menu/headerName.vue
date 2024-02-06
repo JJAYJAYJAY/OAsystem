@@ -60,7 +60,7 @@
     <div  @mouseenter="showWindow" @mouseleave="hideWindow">
       <span>{{ personalSpaceStore.personalSpaceInfo.name }}</span>
       <span ref="quitButton" class="quit" @click="logOut">退出登录</span>
-      <span ref="changePassword" class="changePassword">修改密码</span>
+      <span ref="changePassword" class="changePassword" @click="openChangPassword">修改密码</span>
     </div>
     <div class="img-div">
       <img :src="personalSpaceStore.personalSpaceInfo.userImg" alt="加载失败"/>
@@ -73,6 +73,7 @@
   import {useRouter} from "vue-router";
   import useLoginStore from "@/store/LoginStore.js";
   import usePersonalSpaceStore from "@/store/personalSpaceStore.js";
+  import emitter from "@/utils/mitter.js";
 
   const personalSpaceStore = usePersonalSpaceStore();
 
@@ -91,5 +92,8 @@
   const logOut= () =>{
     router.push('/');
     useLoginStore().setLogin(false,'');
+  }
+  const openChangPassword = () => {
+    emitter.emit('openChangePassword');
   }
 </script>
