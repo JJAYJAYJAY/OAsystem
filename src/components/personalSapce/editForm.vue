@@ -48,6 +48,12 @@
     <a-form-item field="employment_intention" label="职业方向" required>
       <a-input v-model="form.employment_intention"  placeholder="请输入职业方向" />
     </a-form-item>
+    <a-form-item field="project_experience" label="项目经验">
+      <a-textarea v-model="form.project_experience" placeholder="请输入项目经历" style="height: 100px;"></a-textarea>
+    </a-form-item>
+    <a-form-item field="honors" label="个人荣誉">
+      <a-textarea v-model="form.honors"  placeholder="请输入个人荣誉" style="height: 100px;resize: none"/>
+    </a-form-item>
     <a-form-item>
       <a-space class="buttonDiv">
         <a-button type="primary" shape="round" html-type="submit">提交</a-button>
@@ -58,7 +64,7 @@
 </template>
 
 <script setup lang="js">
-import {reactive, getCurrentInstance, ref} from "vue";
+  import {reactive, getCurrentInstance, ref} from "vue";
   import {Message} from "@arco-design/web-vue";
   import usePersonalSpaceStore from "@/store/personalSpaceStore.js";
   import emitter from "@/utils/mitter.js";
@@ -68,11 +74,14 @@ import {reactive, getCurrentInstance, ref} from "vue";
   const form  = reactive({
     name: personalSpaceStore.personalSpaceInfo.name,
     phone_number: personalSpaceStore.personalSpaceInfo.phone,
+    class_room: personalSpaceStore.personalSpaceInfo.classes,
     email: personalSpaceStore.personalSpaceInfo.email,
     political_status: personalSpaceStore.personalSpaceInfo.politicalStatus,
     home_address: personalSpaceStore.personalSpaceInfo.home,
     interesting: personalSpaceStore.personalSpaceInfo.interesting,
-    employment_intention: personalSpaceStore.personalSpaceInfo.careerDirection
+    employment_intention: personalSpaceStore.personalSpaceInfo.careerDirection,
+    project_experience: personalSpaceStore.personalSpaceInfo.projectExperience,
+    honors: personalSpaceStore.personalSpaceInfo.honors
   })
   const rules={
     phone_number:[
@@ -113,7 +122,6 @@ import {reactive, getCurrentInstance, ref} from "vue";
       {required:true,message:'请输入职业方向'}
     ]
   }
-  getCurrentInstance();
   const close = ()=>{
     emitter.emit("closeEditForm");
   }
@@ -128,5 +136,4 @@ import {reactive, getCurrentInstance, ref} from "vue";
       }
     })
   }
-
 </script>

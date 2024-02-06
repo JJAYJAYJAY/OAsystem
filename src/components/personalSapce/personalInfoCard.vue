@@ -35,6 +35,7 @@
         <a-space direction="vertical" :style="{ width: '100%' }">
           <a-upload
               :action="action"
+              :headers="{ Authorization: 'Bearer ' + loginStore.loginSession.userToken }"
               :fileList="file ? [file] : []"
               :show-file-list="false"
               @change="onChange"
@@ -90,17 +91,22 @@
 <script setup lang="js">
   import usePersonalSpaceStore from "@/store/personalSpaceStore.js";
   import { IconEdit, IconPlus } from '@arco-design/web-vue/es/icon';
-  import { ref } from 'vue';
+  import {onMounted, ref} from 'vue';
   import {getUserInfo} from "@/services/user.js";
   import {changeImgAction} from "@/services/user.js";
+  import useLoginStore from "@/store/LoginStore.js";
+  import {Message} from "@arco-design/web-vue";
 
+  const loginStore = useLoginStore();
   const personalSpaceStore = usePersonalSpaceStore();
 
   const  action = changeImgAction;
   const file = ref();
-  file.value = {
-    url: personalSpaceStore.personalSpaceInfo.userImg,
-  }
+  onMounted(()=>{
+    file.value = {
+      url: personalSpaceStore.personalSpaceInfo.userImg,
+    }
+  })
   const onChange = (_, currentFile) => {
     file.value = {
       ...currentFile,
@@ -113,5 +119,6 @@
     getUserInfo().then((res)=>{
       personalSpaceStore.setPersonalSpaceInfoFromRes(res);
     })
+    Message.success("修改成功");
   }
 </script>

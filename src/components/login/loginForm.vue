@@ -124,7 +124,8 @@ const handleSubmit = (e)=>{
   login({
     username: form.username,
     password: form.password
-  }).then((res)=>{
+  })
+  .then((res)=>{
     if(res.status === 200 && res.data.access_token){
       axios.defaults.headers.common['Authorization'] = `${res.data.token_type} ${res.data.access_token}`;
       loginStore().setLogin(true,res.data.access_token);
@@ -145,6 +146,9 @@ const handleSubmit = (e)=>{
     }else{
       showFail();
     }
+  })
+  .catch(()=>{
+    showFail();
   })
 }
 </script>

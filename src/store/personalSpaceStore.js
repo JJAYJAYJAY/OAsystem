@@ -29,8 +29,8 @@ const usePersonalSpaceStore = defineStore(
             personalSpaceInfo.home = home
             personalSpaceInfo.interesting = interesting
             personalSpaceInfo.careerDirection = careerDirection
-            personalSpaceInfo.projectExperience = projectExperience
-            personalSpaceInfo.honors = honors
+            personalSpaceInfo.projectExperience = projectExperience;
+            personalSpaceInfo.honors = honors;
         }
 
         const setPersonalSpaceInfoFromRes = (res) => {

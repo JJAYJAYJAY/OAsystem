@@ -22,7 +22,7 @@ html{
   background: rgba(255, 255, 255, 0.8);
   border-radius: 10px;
   padding: 20px;
-  height: 1000px;
+  height: 1500px;
 }
 .changeButton{
   float: right;
@@ -34,7 +34,7 @@ html{
   margin-top: 20px;
   position: relative;
   left: 70%;
-  top:-220px;
+  top:-260px;
 }
 .goPanel{
   position: relative;
@@ -51,6 +51,10 @@ html{
   justify-content: center;
   align-items: center;
 }
+.projectHonor{
+  position: relative;
+  top: -170px;
+}
 </style>
 
 <template>
@@ -60,6 +64,7 @@ html{
       <person-space-header class="person-space-header"/>
       <detail-info class="detailInfo"/>
       <personal-info-card class="personSpaceCard"/>
+      <project-honor class="projectHonor"/>
       <personal-space-go-panel class="goPanel"/>
       <van-overlay :show="overlayShow" class="overlay">
         <edit-form class="editForm"/>
@@ -77,8 +82,9 @@ import PersonalInfoCard from "@/components/personalSapce/personalInfoCard.vue";
 import editForm from "@/components/personalSapce/editForm.vue";
 import {onMounted,ref} from "vue";
 import emitter from "@/utils/mitter.js";
-import {getTeacherList} from "@/services/user.js";
+import {getTeacherList, getUserInfo} from "@/services/user.js";
 import useTeacherStore from "@/store/teacherstore.js";
+import ProjectHonor from "@/components/personalSapce/projectHonor.vue";
 
 
 onMounted(()=>{

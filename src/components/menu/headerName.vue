@@ -29,17 +29,29 @@
     color: #464646;
     position: absolute;
     right: 30px;
-    top:60px;
+    top:80px;
     line-height: normal;
     padding: 5px;
     font-size: x-small;
     z-index: 1;
     display: none;
   }
-  .quit:hover{
+  .quit:hover, .changePassword:hover{
     cursor: pointer;
     background: #464646;
     color: #dcdcdc;
+  }
+  .changePassword{
+    background: #dcdcdc;
+    color: #464646;
+    position: absolute;
+    right: 30px;
+    top:60px;
+    line-height: normal;
+    padding: 5px;
+    font-size: x-small;
+    z-index: 1;
+    display: none;
   }
 </style>
 
@@ -48,6 +60,7 @@
     <div  @mouseenter="showWindow" @mouseleave="hideWindow">
       <span>{{ personalSpaceStore.personalSpaceInfo.name }}</span>
       <span ref="quitButton" class="quit" @click="logOut">退出登录</span>
+      <span ref="changePassword" class="changePassword">修改密码</span>
     </div>
     <div class="img-div">
       <img :src="personalSpaceStore.personalSpaceInfo.userImg" alt="加载失败"/>
@@ -56,21 +69,27 @@
 </template>
 
 <script setup lang="js">
-  import {getCurrentInstance} from "vue";
+  import {getCurrentInstance,watch,ref,onMounted} from "vue";
+  import {useRouter} from "vue-router";
+  import useLoginStore from "@/store/LoginStore.js";
   import usePersonalSpaceStore from "@/store/personalSpaceStore.js";
 
   const personalSpaceStore = usePersonalSpaceStore();
 
   const page=getCurrentInstance()
+
   const showWindow = () => {
     page.refs.quitButton.style.display = 'inline';
+    page.refs.changePassword.style.display = 'inline';
   }
   const hideWindow = () => {
     page.refs.quitButton.style.display = 'none';
+    page.refs.changePassword.style.display = 'none';
   }
 
-  //TODO:退出登录需要完善
+  const router = useRouter();
   const logOut= () =>{
-
+    router.push('/');
+    useLoginStore().setLogin(false,'');
   }
 </script>

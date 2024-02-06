@@ -5,7 +5,7 @@ const loginStore = defineStore(
     "login",
     () => {
         const loginSession = reactive({
-            loginType: "null",
+            loginType:false,
             userToken: "",
         });
         const setLogin = (loginType,userToken) => {

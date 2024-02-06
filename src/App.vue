@@ -8,10 +8,12 @@
 html{
   min-width: 1450px;
 }
+textarea{
+  resize: none !important;
+}
 </style>
 <template>
   <RouterView/>
 </template>
 <script>
-
 </script>
