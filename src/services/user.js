@@ -50,3 +50,5 @@ export function sendSelectedTable(data){
         baseURL: env.DEV_URL
     })
 }
+
+export const changeImgAction=env.DEV_URL+"/change_img";

@@ -13,19 +13,6 @@
   justify-content: center;
   padding: 10px;
 }
-.img-div{
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin: 5px 0;
-}
-.img-div img{
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-}
 .classIdDiv{
   display: flex;
   flex-direction: column;
@@ -35,13 +22,56 @@
   padding-left: 20px;
   padding-right: 10px;
 }
+.classIdDivItem{
+  display: flex;
+  align-items: start;
+}
 </style>
 
 <template>
   <div class="personalInfoBackground">
     <div class="nameImgDiv">
       <div class="img-div">
-        <img :src="personalSpaceStore.personalSpaceInfo.userImg" alt="加载失败"/>
+        <a-space direction="vertical" :style="{ width: '100%' }">
+          <a-upload
+              :action="action"
+              :fileList="file ? [file] : []"
+              :show-file-list="false"
+              @change="onChange"
+              @progress="onProgress"
+              @success="onSuccess"
+          >
+            <template #upload-button>
+              <div
+                  :class="`arco-upload-list-item${
+            file && file.status === 'error' ? ' arco-upload-list-item-error' : ''
+          }`"
+              >
+                <div
+                    class="arco-upload-list-picture custom-upload-avatar"
+                    v-if="file && file.url"
+                >
+                  <img :src="file.url" />
+                  <div class="arco-upload-list-picture-mask">
+                    <IconEdit />
+                  </div>
+                  <a-progress
+                      v-if="file.status === 'uploading' && file.percent < 100"
+                      :percent="file.percent"
+                      type="circle"
+                      size="mini"
+                  />
+                </div>
+                <div class="arco-upload-picture-card" v-else>
+                  <div class="arco-upload-picture-card-text">
+                    <IconPlus />
+                    <div style="margin-top: 10px; font-weight: 600">Upload</div>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </a-upload>
+        </a-space>
       </div>
       <div>
         <span>{{ personalSpaceStore.personalSpaceInfo.name }}</span>
@@ -51,13 +81,37 @@
       ——————————
     </div>
     <div class="classIdDiv">
-      <div style="display:flex;"><span style="width: 30%">学号：</span><span style="text-align: center;font-size: small;white-space: pre-wrap;height: 40px">{{personalSpaceStore.personalSpaceInfo.studentNumber}}</span></div>
-      <div style="display:flex;"><span style="width: 30%">班级：</span><span style="text-align: center;font-size: small;white-space: pre-wrap;height: 40px">{{personalSpaceStore.personalSpaceInfo.classes}}</span></div>
+      <div class="classIdDivItem"><span style="width: 25%">学号：</span><span style="width:75%; text-align: center;font-size: small;white-space: pre-wrap;height: 25px">{{personalSpaceStore.personalSpaceInfo.studentNumber}}</span></div>
+      <div class="classIdDivItem"><span style="width: 25%">班级：</span><span style="width:75%; text-align: center;font-size: small;white-space: pre-wrap;height: 40px">{{personalSpaceStore.personalSpaceInfo.classes}}</span></div>
     </div>
   </div>
 </template>
 
 <script setup lang="js">
   import usePersonalSpaceStore from "@/store/personalSpaceStore.js";
+  import { IconEdit, IconPlus } from '@arco-design/web-vue/es/icon';
+  import { ref } from 'vue';
+  import {getUserInfo} from "@/services/user.js";
+  import {changeImgAction} from "@/services/user.js";
+
   const personalSpaceStore = usePersonalSpaceStore();
+
+  const  action = changeImgAction;
+  const file = ref();
+  file.value = {
+    url: personalSpaceStore.personalSpaceInfo.userImg,
+  }
+  const onChange = (_, currentFile) => {
+    file.value = {
+      ...currentFile,
+    };
+  };
+  const onProgress = (currentFile) => {
+      file.value = currentFile;
+  };
+  const onSuccess=()=>{
+    getUserInfo().then((res)=>{
+      personalSpaceStore.setPersonalSpaceInfoFromRes(res);
+    })
+  }
 </script>

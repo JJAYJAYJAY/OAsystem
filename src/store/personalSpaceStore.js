@@ -33,9 +33,28 @@ const usePersonalSpaceStore = defineStore(
             personalSpaceInfo.honors = honors
         }
 
+        const setPersonalSpaceInfoFromRes = (res) => {
+            let student=res.data.Student
+            setPersonalSpaceInfo(
+                student.name,
+                "data:image/gif;base64,"+student.image,
+                student.student_id,
+                student.class_room,
+                student.phone_number,
+                student.political_status,
+                student.email,
+                student.home_address,
+                student.interesting,
+                student.employment_intention,
+                student.project_experience,
+                student.honors,
+            )
+        }
+
         return {
             personalSpaceInfo,
-            setPersonalSpaceInfo
+            setPersonalSpaceInfo,
+            setPersonalSpaceInfoFromRes
         }
     },
     {

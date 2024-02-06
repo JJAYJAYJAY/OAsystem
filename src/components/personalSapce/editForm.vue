@@ -121,19 +121,7 @@ import {reactive, getCurrentInstance, ref} from "vue";
     changeUserInfo(form).then(res=>{
       if(res.status === 200){
         getUserInfo().then(res=>{
-          const student=res.data.Student;
-          personalSpaceStore.setPersonalSpaceInfo(
-              student.name,
-              student.image,
-              student.student_id,
-              student.class_room,
-              student.phone_number,
-              student.political_status,
-              student.email,
-              student.home_address,
-              student.interesting,
-              student.employment_intention
-          )
+          personalSpaceStore.setPersonalSpaceInfoFromRes(res);
         })
         Message.success("修改成功")
         close();

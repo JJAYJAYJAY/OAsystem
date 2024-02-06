@@ -131,22 +131,7 @@ const handleSubmit = (e)=>{
       switch (res.data.user_type){
         case 0:
           getUserInfo().then(res=>{
-            const PersonalSpaceStore = usePersonalSpaceStore();
-            let student=res.data.Student
-            PersonalSpaceStore.setPersonalSpaceInfo(
-                student.name,
-                "data:image/gif;base64,"+student.image,
-                student.student_id,
-                student.class_room,
-                student.phone_number,
-                student.political_status,
-                student.email,
-                student.home_address,
-                student.interesting,
-                student.employment_intention,
-                student.project_experience,
-                student.honors,
-            )
+            usePersonalSpaceStore().setPersonalSpaceInfoFromRes(res);
           })
           router.push("/studentApp/PersonalSpace");
           break;
