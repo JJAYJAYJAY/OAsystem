@@ -102,6 +102,9 @@
 
   const  action = changeImgAction;
   const file = ref();
+  file.value = {
+    url: personalSpaceStore.personalSpaceInfo.userImg,
+  }
   onMounted(()=>{
     file.value = {
       url: personalSpaceStore.personalSpaceInfo.userImg,
