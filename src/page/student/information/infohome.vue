@@ -7,11 +7,11 @@
 }
 .panel1{
   top:200px;
-  left: 200px;
+  left: 250px;
 }
 .panel2{
   top:200px;
-  left: 800px;
+  left: 850px;
 }
 </style>
 

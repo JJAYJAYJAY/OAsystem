@@ -74,4 +74,14 @@ export function changePassword(data){
         baseURL: env.DEV_URL
     })
 }
+
+export function sendSuggestion(data){
+    setToken();
+    return axios.request({
+        url: "/send_suggestion",
+        method: "post",
+        data: data,
+        baseURL: env.DEV_URL
+    })
+}
 export const changeImgAction=env.DEV_URL+"/change_img";
