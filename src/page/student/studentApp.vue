@@ -1,10 +1,13 @@
 <style scoped>
+.main-content{
+  min-height: 90vh;
+}
 </style>
 <template>
   <header-menu>
     <menu-item @click="goInfo" item-name="相关信息"/>
     <menu-item @click="goMessage" item-name="我的消息"/>
-    <menu-item @click="goPersonalSpace" item-name="个人空间" selected="selected"/>
+    <menu-item @click="goPersonalSpace" item-name="个人空间"/>
   </header-menu>
   <div class="main-content">
     <router-view/>
