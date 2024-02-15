@@ -82,8 +82,8 @@
       ——————————
     </div>
     <div class="classIdDiv">
-      <div class="classIdDivItem"><span style="width: 25%">学号：</span><span style="width:75%; text-align: center;font-size: small;white-space: pre-wrap;height: 25px">{{personalSpaceStore.personalSpaceInfo.studentNumber}}</span></div>
-      <div class="classIdDivItem"><span style="width: 25%">班级：</span><span style="width:75%; text-align: center;font-size: small;white-space: pre-wrap;height: 40px">{{personalSpaceStore.personalSpaceInfo.classes}}</span></div>
+      <div class="classIdDivItem"><span style="width: 25%">学号：</span><span style="width:75%; text-align: center;font-size: small;white-space: pre-wrap;height: 25px">{{personalSpaceStore.studentInfo.studentNumber}}</span></div>
+      <div class="classIdDivItem"><span style="width: 25%">班级：</span><span style="width:75%; text-align: center;font-size: small;white-space: pre-wrap;height: 40px">{{personalSpaceStore.studentInfo.classes}}</span></div>
     </div>
   </div>
 </template>
@@ -120,7 +120,7 @@
   };
   const onSuccess=()=>{
     getUserInfo().then((res)=>{
-      personalSpaceStore.setPersonalSpaceInfoFromRes(res);
+      personalSpaceStore.setPersonalSpaceStudentInfoFromRes(res)
     })
     Message.success("修改成功");
   }

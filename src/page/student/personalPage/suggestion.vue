@@ -55,10 +55,7 @@
           <a-button type="primary" html-type="submit">提交</a-button>
         </a-form-item>
       </a-form>
-      <a-result v-if="showSuccess" status="success" title="This is title content" >
-        <template #subtitle>
-          建议提交成功！
-        </template>
+      <a-result v-if="showSuccess" status="success" title="建议提交成功！" >
         <template #extra>
           <a-space>
             <a-button type='primary' @click="goPersonalSpace">返回</a-button>
@@ -98,7 +95,6 @@
       .then((res)=>{
         if(res.status===200){
           success();
-          router.push("personalSpace");
         }
       }).catch((err)=>{
         message.error("提交失败");

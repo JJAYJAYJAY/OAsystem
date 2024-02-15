@@ -6,7 +6,9 @@ const usePersonalSpaceStore = defineStore(
     () => {
         const personalSpaceInfo =reactive( {
             name: '',
-            userImg: '',
+            userImg: ''
+        })
+        const studentInfo = reactive({
             studentNumber: '',
             classes: '',
             phone: '',
@@ -18,26 +20,30 @@ const usePersonalSpaceStore = defineStore(
             honors:'',
             projectExperience:'',
         })
-        const setPersonalSpaceInfo = (name,img,studentNumber,classes,phone,politicalStatus,email,home,interesting,careerDirection,projectExperience,honors) => {
+        const setPersonalSpaceInfo = (name,img) => {
             personalSpaceInfo.name = name
             personalSpaceInfo.userImg = img
-            personalSpaceInfo.studentNumber = studentNumber
-            personalSpaceInfo.classes = classes
-            personalSpaceInfo.phone = phone
-            personalSpaceInfo.politicalStatus = politicalStatus
-            personalSpaceInfo.email = email
-            personalSpaceInfo.home = home
-            personalSpaceInfo.interesting = interesting
-            personalSpaceInfo.careerDirection = careerDirection
-            personalSpaceInfo.projectExperience = projectExperience;
-            personalSpaceInfo.honors = honors;
+        }
+        const setStudentInfo = (studentNumber,classes,phone,politicalStatus,email,home,interesting,careerDirection,projectExperience,honors) => {
+            studentInfo.studentNumber = studentNumber
+            studentInfo.classes = classes
+            studentInfo.phone = phone
+            studentInfo.politicalStatus = politicalStatus
+            studentInfo.email = email
+            studentInfo.home = home
+            studentInfo.interesting = interesting
+            studentInfo.careerDirection = careerDirection
+            studentInfo.projectExperience = projectExperience;
+            studentInfo.honors = honors;
         }
 
-        const setPersonalSpaceInfoFromRes = (res) => {
+        const setPersonalSpaceStudentInfoFromRes = (res) => {
             let student=res.data.Student
             setPersonalSpaceInfo(
                 student.name,
-                "data:image/gif;base64,"+student.image,
+                "data:image/gif;base64,"+student.image
+            )
+            setStudentInfo(
                 student.student_id,
                 student.class_room,
                 student.phone_number,
@@ -54,7 +60,8 @@ const usePersonalSpaceStore = defineStore(
         return {
             personalSpaceInfo,
             setPersonalSpaceInfo,
-            setPersonalSpaceInfoFromRes
+            setPersonalSpaceStudentInfoFromRes,
+            studentInfo
         }
     },
     {

@@ -3,15 +3,15 @@
   background: url(" /public/img/向日葵——图书馆.png") no-repeat;
   background-size: 100% 100%;
   width: 100%;
-  min-height: 800px;
+  min-height: 92vh;
 }
 .panel1{
   top:200px;
-  left: 250px;
+  left: 400px;
 }
 .panel2{
   top:200px;
-  left: 850px;
+  left: 1000px;
 }
 </style>
 

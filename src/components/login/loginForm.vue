@@ -132,7 +132,7 @@ const handleSubmit = (e)=>{
       switch (res.data.user_type){
         case 0:
           getUserInfo().then(res=>{
-            usePersonalSpaceStore().setPersonalSpaceInfoFromRes(res);
+            usePersonalSpaceStore().setPersonalSpaceStudentInfoFromRes(res);
           })
           router.push("/studentApp/PersonalSpace");
           break;

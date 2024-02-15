@@ -3,7 +3,7 @@
 </style>
 
 <template>
-  我的消息
+  <div>123112323</div>
 </template>
 
 <script setup lang="js">

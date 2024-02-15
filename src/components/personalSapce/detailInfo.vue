@@ -21,27 +21,27 @@
   <div class="form-container">
     <span>
       <label for="contact">联系方式：</label>
-      <span id="contact"  class="infoSpan">{{personalSpaceStore.personalSpaceInfo.phone}}</span>
+      <span id="contact"  class="infoSpan">{{personalSpaceStore.studentInfo.phone}}</span>
     </span>
     <span>
       <label for="politics">政治面貌：</label>
-      <span id="politics" class="infoSpan"> {{ personalSpaceStore.personalSpaceInfo.politicalStatus }} </span>
+      <span id="politics" class="infoSpan"> {{ personalSpaceStore.studentInfo.politicalStatus }} </span>
     </span>
     <span>
       <label for="email">邮箱：</label>
-      <span id="email" class="infoSpan">{{personalSpaceStore.personalSpaceInfo.email}}</span>
+      <span id="email" class="infoSpan">{{personalSpaceStore.studentInfo.email}}</span>
     </span>
     <span>
       <label for="address">家庭住址：</label>
-      <span id="address" class="infoSpan">{{personalSpaceStore.personalSpaceInfo.home}}</span>
+      <span id="address" class="infoSpan">{{personalSpaceStore.studentInfo.home}}</span>
     </span>
     <span>
       <label for="career">职业方向：</label>
-      <span id="career" class="infoSpan">{{personalSpaceStore.personalSpaceInfo.careerDirection}}</span>
+      <span id="career" class="infoSpan">{{personalSpaceStore.studentInfo.careerDirection}}</span>
     </span>
     <span>
       <label for="interest">兴趣方向：</label>
-      <span id="interest" class="infoSpan">{{personalSpaceStore.personalSpaceInfo.interesting}}</span>
+      <span id="interest" class="infoSpan">{{personalSpaceStore.studentInfo.interesting}}</span>
     </span>
   </div>
 </template>

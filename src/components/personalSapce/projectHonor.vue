@@ -33,13 +33,13 @@
     <div class="outerBox">
       <div>
         <span class="small-title">项目经历：</span>
-        <div class="content">{{personalSpaceStore.personalSpaceInfo.projectExperience ? personalSpaceStore.personalSpaceInfo.projectExperience:"无"}}</div>
+        <div class="content">{{personalSpaceStore.studentInfo.projectExperience ? personalSpaceStore.studentInfo.projectExperience:"无"}}</div>
       </div>
     </div>
     <div class="outerBox">
       <div>
         <span class="small-title">荣誉奖励：</span>
-        <div class="content">{{personalSpaceStore.personalSpaceInfo.honors ? personalSpaceStore.personalSpaceInfo.honors : "无"}}</div>
+        <div class="content">{{personalSpaceStore.studentInfo.honors ? personalSpaceStore.studentInfo.honors : "无"}}</div>
       </div>
     </div>
   </div>

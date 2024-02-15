@@ -73,15 +73,15 @@
   const personalSpaceStore = usePersonalSpaceStore();
   const form  = reactive({
     name: personalSpaceStore.personalSpaceInfo.name,
-    phone_number: personalSpaceStore.personalSpaceInfo.phone,
-    class_room: personalSpaceStore.personalSpaceInfo.classes,
-    email: personalSpaceStore.personalSpaceInfo.email,
-    political_status: personalSpaceStore.personalSpaceInfo.politicalStatus,
-    home_address: personalSpaceStore.personalSpaceInfo.home,
-    interesting: personalSpaceStore.personalSpaceInfo.interesting,
-    employment_intention: personalSpaceStore.personalSpaceInfo.careerDirection,
-    project_experience: personalSpaceStore.personalSpaceInfo.projectExperience,
-    honors: personalSpaceStore.personalSpaceInfo.honors
+    phone_number: personalSpaceStore.studentInfo.phone,
+    class_room: personalSpaceStore.studentInfo.classes,
+    email: personalSpaceStore.studentInfo.email,
+    political_status: personalSpaceStore.studentInfo.politicalStatus,
+    home_address: personalSpaceStore.studentInfo.home,
+    interesting: personalSpaceStore.studentInfo.interesting,
+    employment_intention: personalSpaceStore.studentInfo.careerDirection,
+    project_experience: personalSpaceStore.studentInfo.projectExperience,
+    honors: personalSpaceStore.studentInfo.honors
   })
   const rules={
     phone_number:[
@@ -129,7 +129,7 @@
     changeUserInfo(form).then(res=>{
       if(res.status === 200){
         getUserInfo().then(res=>{
-          personalSpaceStore.setPersonalSpaceInfoFromRes(res);
+          personalSpaceStore.setPersonalSpaceStudentInfoFromRes(res)
         })
         Message.success("修改成功")
         close();
