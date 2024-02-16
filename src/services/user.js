@@ -1,13 +1,9 @@
 import axios from "axios";
-import {env} from "@/services/env.js";
+import {env, setToken} from "@/services/env.js";
 import useLoginStore from "@/store/loginStore.js";
 
-export function setToken() {
-    const loginStore=useLoginStore();
-    if(loginStore.loginSession.loginType){
-        axios.defaults.headers.common["Authorization"] ="Bearer "+loginStore.loginSession.userToken;
-    }
-}
+
+
 
 export function getUserInfo() {
     setToken();
@@ -56,27 +52,19 @@ export function sendSuggestion(data){
     })
 }
 
-export function getMyMessageList(){
+export function getMessages(){
     setToken();
     return axios.request({
-        url: "/get_my_message_list",
-        method: "get",
-        baseURL: env.DEV_URL
-    })
-}
-export function getToMeMessageList(){
-    setToken();
-    return axios.request({
-        url: "/get_to_me_message_list",
+        url: "/get_messages",
         method: "get",
         baseURL: env.DEV_URL
     })
 }
 
-export function getMessageDetail(data){
+export function sendMessage(data){
     setToken();
     return axios.request({
-        url: "/get_message_detail",
+        url: "/send_message",
         method: "post",
         data: data,
         baseURL: env.DEV_URL

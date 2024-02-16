@@ -10,7 +10,7 @@ import selectTeacher from "@/page/student/personalPage/selectTeacher.vue";
 import suggestion from "@/page/student/personalPage/suggestion.vue";
 import newMessage from "@/page/message/components/newMessage.vue";
 import messageDetail from "@/page/message/components/messageDetail.vue"
-
+import teacherApp from "@/page/teacher/teacherApp.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -54,7 +54,16 @@ const router = createRouter({
                 }
             ]
         },
-
+        {
+            path:'/teacherApp',
+            component: teacherApp,
+            children:[
+                {
+                    path: 'message',
+                    component: message,
+                }
+            ]
+        }
     ],
     scrollBehavior (to, from, savedPosition) {
         return { top: 0 }

@@ -16,7 +16,7 @@
   display: flex;
 }
 .right{
-  width: 70%;
+  width: 80%;
 }
 </style>
 
@@ -24,7 +24,7 @@
   <div class="background">
     <div class="content">
       <a-menu
-          :style="{height: '100%',width:'30%' }"
+          :style="{height: '100%',width:'20%' }"
           :default-selected-keys="['0']"
           @menu-item-click="handleClick"
       >
@@ -45,30 +45,30 @@ import MessageList from "@/page/message/components/messageList.vue";
 import MessageDetail from "@/page/message/components/messageDetail.vue";
 import NewMessage from "@/page/message/components/newMessage.vue";
 import { ref,onMounted } from "vue";
-import {getMyMessageList, getToMeMessageList} from "@/services/user.js";
+import usePersonalSpaceStore from "@/store/personalSpaceStore.js";
+
 import emitter from "@/utils/mitter.js";
+import {getMessages} from "@/services/user.js";
 
-
+const personalSpaceStore = usePersonalSpaceStore();
 const messagelist = ref(true);
 const showdetail = ref(false);
 const shownew = ref(false);
 const messageList =ref([])
 const detailMessage = ref({})
 
-onMounted(()=>{
-  handleMyMessageClick()
-})
+
 
 const handleClick = (e) => {
   switch (e) {
     case "0":
       openSection("list")
-      handleMyMessageClick()
+      handleMessageClick(false)
       console.log("我发出的");
       break;
     case "1":
       openSection("list")
-      handleToMeMessageClick()
+      handleMessageClick(true)
       console.log("我收到的");
       break;
     case "2":
@@ -78,17 +78,28 @@ const handleClick = (e) => {
   }
 }
 
-const handleMyMessageClick =()=>{
-  getMyMessageList().then((res)=>{
-    messageList.value = res.data.message;
-  })
+onMounted(()=>{
+    handleClick("0")
+})
+
+const handleMessageClick =(isToMe)=>{
+  messageList.value=[]
+  getMessages().then(
+    (res)=>{
+      let myName=personalSpaceStore.personalSpaceInfo.name
+      for(const message of res.data){
+        if(isToMe && myName === message.to_user_name){
+          messageList.value.push(message)
+        }
+        else if(!isToMe && myName === message.from_user_name) {
+          messageList.value.push(message)
+        }
+      }
+    }
+  )
 }
 
-const handleToMeMessageClick =()=>{
-  getToMeMessageList().then((res)=>{
-    messageList.value = res.data.message;
-  })
-}
+
 
 const openSection = (section) => {
   messagelist.value = section === 'list';

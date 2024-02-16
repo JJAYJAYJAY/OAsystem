@@ -52,7 +52,7 @@
                     class="arco-upload-list-picture custom-upload-avatar"
                     v-if="file && file.url"
                 >
-                  <img :src="file.url" />
+                  <img :src="file.url"/>
                   <div class="arco-upload-list-picture-mask">
                     <IconEdit />
                   </div>
@@ -91,7 +91,7 @@
 <script setup lang="js">
   import usePersonalSpaceStore from "@/store/personalSpaceStore.js";
   import { IconEdit, IconPlus } from '@arco-design/web-vue/es/icon';
-  import {onMounted, ref} from 'vue';
+  import {onMounted, ref, watch} from 'vue';
   import {getUserInfo} from "@/services/user.js";
   import {changeImgAction} from "@/services/user.js";
   import useLoginStore from "@/store/LoginStore.js";
@@ -101,14 +101,16 @@
   const personalSpaceStore = usePersonalSpaceStore();
 
   const  action = changeImgAction;
-  const file = ref();
+  const file = ref({});
   file.value = {
     url: personalSpaceStore.personalSpaceInfo.userImg,
   }
   onMounted(()=>{
-    file.value = {
-      url: personalSpaceStore.personalSpaceInfo.userImg,
-    }
+    watch(()=>personalSpaceStore.personalSpaceInfo.userImg,()=> {
+      file.value = {
+        url: personalSpaceStore.personalSpaceInfo.userImg,
+      }
+    })
   })
   const onChange = (_, currentFile) => {
     file.value = {

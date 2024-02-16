@@ -41,7 +41,7 @@ onMounted(() => {
   })
   .then((res) => {
     for (const t of res.data.teachers) {
-      let teacher = new Teacher(t.id, t.name, t.department, t.office, t.phone_number, t.email);
+      let teacher = new Teacher(t.user_id, t.name, t.department, t.office, t.phone_number, t.email);
       teacherList.value.push(teacher)
     }
     teacherStore.setTeacherInfo(res.data.total, teacherList.value);
@@ -49,13 +49,6 @@ onMounted(() => {
 });
 console.log(teacherList.value);
 const columns = [
-  {
-    title:"序号",
-    dataIndex:"teacherId",
-    key:"teacherId",
-    width: 50,
-    align: "center"
-  },
   {
     title: "姓名",
     dataIndex: "teacherName",

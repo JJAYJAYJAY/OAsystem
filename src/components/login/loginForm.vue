@@ -137,7 +137,10 @@ const handleSubmit = (e)=>{
           router.push("/studentApp/PersonalSpace");
           break;
         case 1:
-          router.push("/teacher");
+          getUserInfo().then(res=>{
+            usePersonalSpaceStore().setPersonalSpaceTeacherInfoFromRes(res);
+          })
+          router.push("/teacherApp/message");
           break;
         case 2:
           router.push("/admin");

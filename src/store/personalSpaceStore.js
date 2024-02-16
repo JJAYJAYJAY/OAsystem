@@ -20,6 +20,10 @@ const usePersonalSpaceStore = defineStore(
             honors:'',
             projectExperience:'',
         })
+
+        const teacherInfo = reactive({
+
+        })
         const setPersonalSpaceInfo = (name,img) => {
             personalSpaceInfo.name = name
             personalSpaceInfo.userImg = img
@@ -57,11 +61,20 @@ const usePersonalSpaceStore = defineStore(
             )
         }
 
+        const setPersonalSpaceTeacherInfoFromRes = (res) => {
+            let teacher=res.data.Teacher
+            setPersonalSpaceInfo(
+                teacher.name,
+                "data:image/gif;base64,"+teacher.image
+            )
+        }
         return {
             personalSpaceInfo,
             setPersonalSpaceInfo,
             setPersonalSpaceStudentInfoFromRes,
-            studentInfo
+            studentInfo,
+            setPersonalSpaceTeacherInfoFromRes,
+            teacherInfo
         }
     },
     {

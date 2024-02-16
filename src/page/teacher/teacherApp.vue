@@ -1,0 +1,27 @@
+<style scoped>
+.main-content{
+  min-height: 90vh;
+}
+</style>
+<template>
+  <header-menu>
+    <menu-item item-name="理由库"/>
+    <menu-item @click="goMessage" item-name="我的消息"/>
+    <menu-item item-name="审批管理"/>
+  </header-menu>
+  <div class="main-content">
+    <router-view/>
+  </div>
+</template>
+
+<script setup lang="js">
+  import MenuItem from "@/components/menu/menuItem.vue";
+  import {useRouter} from "vue-router";
+  import HeaderMenu from "@/components/menu/headerMenu.vue";
+
+  const router =new useRouter();
+
+  const goMessage = () => {
+    router.push("message");
+  }
+</script>

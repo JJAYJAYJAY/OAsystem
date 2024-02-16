@@ -95,7 +95,7 @@ onMounted(()=>{
   document.title = "个人空间";
   getTeacherList({
     start:0,
-    end:10
+    end:1
   }).then((res)=>{
     useTeacherStore().setTeacherInfo(res.data.total,[]);
   })
