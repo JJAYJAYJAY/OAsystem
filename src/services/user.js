@@ -2,9 +2,6 @@ import axios from "axios";
 import {env, setToken} from "@/services/env.js";
 import useLoginStore from "@/store/loginStore.js";
 
-
-
-
 export function getUserInfo() {
     setToken();
     return axios.request({
@@ -71,4 +68,12 @@ export function sendMessage(data){
     })
 }
 
+export function getValidTeacher(){
+    setToken();
+    return axios.request({
+        url: "/get_valid_teacher",
+        method: "get",
+        baseURL: env.DEV_URL
+    })
+}
 export const changeImgAction=env.DEV_URL+"/change_img";

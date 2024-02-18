@@ -25,7 +25,7 @@ li span {
     <span v-if="haveChoosed">{{teacher}}</span>
     <span v-else>
       <a-select allow-clear allow-search>
-        <a-option v-for="(teacher,index) in teachers" :key="index">{{teacher}}</a-option>
+        <a-option v-for="(teacher,index) in teachers" :key="index" :value="teacher.user_id">{{teacher.name}}</a-option>
       </a-select>
     </span>
     <span v-if="haveSend">已发送</span>
@@ -35,11 +35,11 @@ li span {
 </template>
 
 <script setup lang="js">
-  import {defineProps} from "vue";
+  import {defineProps, ref} from "vue";
   import useTeacherStore from "@/store/teacherstore.js";
-  import {getTeacherList} from "@/services/user.js";
+  import {getTeacherList, getValidTeacher} from "@/services/user.js";
 
-  const teachers=[]
+  const teachers=ref([])
   const props = defineProps({
     title: String,
     selectStatus: String,
@@ -47,15 +47,9 @@ li span {
     teacher: String,
     haveSend: Boolean
   })
-  const teacherStore = useTeacherStore();
-  getTeacherList({
-    start:0,
-    end:teacherStore.teacherInfo.total
-  }).then((res)=>{
-    for(let i=0;i<res.data.total;i++){
-      teachers.push(res.data.teachers[i].name);
-    }
-    teachers.sort()
+
+  getValidTeacher().then((res)=>{
+    teachers.value=res.data
   })
 
 </script>
