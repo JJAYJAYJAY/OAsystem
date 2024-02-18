@@ -9,6 +9,7 @@ import studentApp from "@/page/student/studentApp.vue";
 import selectTeacher from "@/page/student/personalPage/selectTeacher.vue";
 import suggestion from "@/page/student/personalPage/suggestion.vue";
 import teacherApp from "@/page/teacher/teacherApp.vue";
+import reasonList from "@/page/teacher/reasonList.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -59,6 +60,10 @@ const router = createRouter({
                 {
                     path: 'message',
                     component: message,
+                },
+                {
+                    path: 'reason',
+                    component: reasonList
                 }
             ]
         }
