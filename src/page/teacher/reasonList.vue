@@ -30,7 +30,6 @@
       >
         <a-menu-item @click="clickMenu(0)" key="0">理由库</a-menu-item>
         <a-menu-item @click="clickMenu(1)" key="1">新增理由</a-menu-item>
-        <a-menu-item @click="clickMenu(2)" key="2">修改密码</a-menu-item>
       </a-menu>
       <a-list class="right" v-if="checkPage === 0">
         <template #header>
@@ -52,8 +51,6 @@
           <a-button type="primary" html-type="submit" @click="handleSubmit">提交</a-button>
         </a-form-item>
       </a-form>
-
-<!--      /* 修改密码 你来写 用 v-if="checkPage === 2"来切换*/  -->
     </div>
   </div>
 
