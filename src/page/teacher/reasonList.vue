@@ -59,6 +59,9 @@
 <script setup lang="js">
 import { ref,onMounted } from "vue";
 import {getReasonList, setNewReason} from "@/services/reasonList.js";
+import useReasonListStore from "@/store/reasonListStore.js";
+
+const ReasonListStore = useReasonListStore();
 
 const checkPage = ref(0);
 
@@ -66,6 +69,7 @@ const clickMenu = (index) => {
   checkPage.value = index;
 }
 
+//默认理由库 list 测试用，挂载阶段会自动更新成后端的理由库
 const reasonList = ref([
   {
     content: "请假"
@@ -82,6 +86,9 @@ const reasonList = ref([
 onMounted(() => {
   getReasonList().then(res => {
     reasonList.value = res.data.reasons;
+
+    //将获取到的理由库存入store
+    ReasonListStore.setReason(reasonList.value);
   })
 });
 
