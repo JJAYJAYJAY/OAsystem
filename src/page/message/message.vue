@@ -37,7 +37,6 @@
       <new-message class="right" v-if="shownew"/>
     </div>
   </div>
-
 </template>
 
 <script setup lang="js">

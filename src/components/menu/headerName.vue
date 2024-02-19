@@ -53,6 +53,11 @@
     z-index: 1;
     display: none;
   }
+  .overlay{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 </style>
 
 <template>
@@ -65,6 +70,9 @@
     <div class="img-div">
       <img :src="personalSpaceStore.personalSpaceInfo.userImg" alt="加载失败"/>
     </div>
+    <van-overlay :show="showChangePassword" class="overlay">
+      <change-password/>
+    </van-overlay>
   </div>
 </template>
 
@@ -74,6 +82,7 @@
   import useLoginStore from "@/store/LoginStore.js";
   import usePersonalSpaceStore from "@/store/personalSpaceStore.js";
   import emitter from "@/utils/mitter.js";
+  import ChangePassword from "@/components/personalSapce/changePassword.vue";
 
   const personalSpaceStore = usePersonalSpaceStore();
 
@@ -96,4 +105,12 @@
   const openChangPassword = () => {
     emitter.emit('openChangePassword');
   }
+
+  const showChangePassword = ref(false);
+  emitter.on('closeChangePassword',()=>{
+    showChangePassword.value = false;
+  })
+  emitter.on('openChangePassword',()=>{
+    showChangePassword.value = true;
+  })
 </script>

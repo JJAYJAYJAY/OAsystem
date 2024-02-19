@@ -10,6 +10,9 @@ import selectTeacher from "@/page/student/personalPage/selectTeacher.vue";
 import suggestion from "@/page/student/personalPage/suggestion.vue";
 import teacherApp from "@/page/teacher/teacherApp.vue";
 import reasonList from "@/page/teacher/reasonList.vue";
+import adminApp from "@/page/admin/adminApp.vue";
+import admin from "@/page/admin/admin.vue";
+import twoWayTable from "@/page/student/personalPage/twoWayTable.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -50,6 +53,11 @@ const router = createRouter({
                 {
                     path: 'suggestion',
                     component: suggestion
+                },
+                {
+                    name: 'twoWayTable',
+                    path: 'twoWayTable',
+                    component: twoWayTable
                 }
             ]
         },
@@ -64,6 +72,24 @@ const router = createRouter({
                 {
                     path: 'reason',
                     component: reasonList
+                }
+            ]
+        },
+        {
+            path:'/adminApp',
+            component: adminApp,
+            children:[
+                {
+                    path: 'message',
+                    component: message,
+                },
+                {
+                    path: 'reason',
+                    component: reasonList
+                },
+                {
+                    path: 'admin',
+                    component: admin
                 }
             ]
         }

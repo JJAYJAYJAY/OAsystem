@@ -105,8 +105,14 @@ ul li span {
     <div class="out">
       <div class="allFont"><span @click="goPersonalSpace" class="returnButton">返回个人空间</span>>导师选择</div>
       <div class="inner">
-        <!-- 时间用v-bind?反正我这里先写死了，你们后面再改 -->
-        <div class="allFont">还有{{lastTime}},抓紧选择你心仪的导师吧!</div>
+        <a-col :flex="1">
+          <a-countdown
+              :title="title"
+              :value="now + lastTime"
+              :now="now"
+              format="D 天 H 时 m 分 s 秒"
+          />
+        </a-col>
         <ul>
           <li>
             <span></span>
@@ -116,7 +122,7 @@ ul li span {
             </span>
             <span>详情</span>
           </li>
-          <select-item title="第一轮选择" :teacher="teacher" have-send select-status="未发送"/>
+          <select-item v-for="(selection) in selections" :selection="selection"/>
         </ul>
       </div>
       <div class="innerFooter">
@@ -145,13 +151,80 @@ ul li span {
 </template>
 <script setup lang="js">
 import { useRouter } from "vue-router";
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import SelectItem from "@/components/personalSapce/mutualChoseItem.vue";
+import {getSelect} from "@/services/user.js";
+import emitter from "@/utils/mitter.js";
 
-const lastTime = ref("10天10小时10分钟");
+const lastTime = ref();
+const now= Date.now();
+const turns = ref(1);
+const title = ref();
+const selections= ref([]);
+
 const teacher = ref("张三");
 const router = useRouter();
 const goPersonalSpace = () => {
   router.push("personalSpace");
 };
+
+onMounted(() => {
+   getSelectList()
+});
+
+const getSelectList=()=>{
+  getSelect().then(res => {
+    let data=res.data;
+    // data={
+    //   selections: [
+    //     // {
+    //     //   "turns": 0,
+    //     //   "status": 0,
+    //     //   "student_name": "string",
+    //     //   "teacher_name": "string",
+    //     //   "selection_id": 0
+    //     // }
+    //   ],
+    //   start_time: "2024-03-08 04:12:14",
+    //   end_time: "1994-10-01 00:25:27",
+    //   turns: 1
+    // }
+    selections.value = data.selections;
+    if (selections.value.length===0){
+      createNewSelection();
+    }
+    calcTime(data.start_time,data.end_time,data.turns);
+  })
+}
+
+emitter.on("getSelect",getSelectList)
+
+const calcTime=(start_time,end_time,turn)=>{
+  let endDate=new Date(end_time);
+  let startDate=new Date(start_time);
+  if(now < startDate) {
+    lastTime.value = startDate - now;
+    title.value = "距离第"+turn+"轮选择开始还有";
+    lastTime.value = startDate - now;
+    turns.value = turn;
+  }
+  else if(endDate < now){
+    lastTime.value = 0;
+    title.value = "第"+turn+"轮选择已结束";
+  }else {
+    lastTime.value = endDate - now;
+    turns.value = turn;
+    title.value = "距离第"+turn+"轮选择结束还有";
+  }
+}
+
+const createNewSelection=()=>{
+  selections.value.push({
+    turns: turns.value,
+    status: 6,
+    student_name: "",
+    teacher_name: "",
+    selection_id: 0
+  })
+}
 </script>

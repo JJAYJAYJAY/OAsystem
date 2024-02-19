@@ -1,6 +1,5 @@
 import axios from "axios";
 import {env, setToken} from "@/services/env.js";
-import useLoginStore from "@/store/loginStore.js";
 
 export function getUserInfo() {
     setToken();
@@ -76,4 +75,45 @@ export function getValidTeacher(){
         baseURL: env.DEV_URL
     })
 }
+
+export function getSelect(){
+    setToken();
+    return axios.request({
+        url: "/get_select",
+        method: "get",
+        baseURL: env.DEV_URL
+    })
+}
+
+export function sendStudentInfo(data){
+    setToken()
+    return axios.request({
+        url:'/send_student_info',
+        method:"post",
+        data:data,
+        baseURL:env.DEV_URL
+    })
+}
+
+export function sendTwoWayTable(data){
+    setToken()
+    return axios.request({
+        url:'/send_twoway_table',
+        method:"post",
+        data:data,
+        baseURL:env.DEV_URL
+    })
+}
+
+export function getSign(data){
+    setToken()
+    return axios.request({
+        url:'/get_sign',
+        method:"post",
+        data:data,
+        baseURL:env.DEV_URL
+    })
+}
+
 export const changeImgAction=env.DEV_URL+"/change_img";
+export const sendSign=env.DEV_URL+"/send_sign";

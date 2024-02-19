@@ -143,7 +143,10 @@ const handleSubmit = (e)=>{
           router.push("/teacherApp/message");
           break;
         case 2:
-          router.push("/admin");
+          getUserInfo().then(res=>{
+            usePersonalSpaceStore().setPersonalSpaceInfo(res.data.Admin.name,"data:image/gif;base64,"+res.data.Admin.image)
+          })
+          router.push("/adminApp/message");
           break;
       }
     }else{

@@ -10,7 +10,7 @@ const useReasonListStore = defineStore(
             }
         ])
         const setReason= (newreason) => {
-           reason = newreason;
+           reason.value = newreason;
         }
         return {
             reason,

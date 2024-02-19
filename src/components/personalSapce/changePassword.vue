@@ -22,7 +22,7 @@
   <a-form class="Form" :rules="rules" :model="form" @submit-success="handleSubmit" @submit-failed="this.$message.error('修改失败')">
     <div class="form-title">修改密码</div>
     <a-form-item field="old_password" label="旧密码" validate-trigger="blur">
-      <a-input-password v-model="form.old_password" plac eholder="请输入旧密码" />
+      <a-input-password v-model="form.old_password" placeholder="请输入旧密码" />
     </a-form-item>
     <a-form-item field="new_password" label="新密码" validate-trigger="blur">
       <a-input-password v-model="form.new_password" placeholder="请输入新密码" />
