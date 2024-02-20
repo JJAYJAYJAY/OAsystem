@@ -100,7 +100,7 @@ import {reactive} from "vue";
 import {useRouter} from "vue-router";
 import {showDialog} from "vant";
 import {login} from "@/services/login.js";
-import loginStore from "@/store/LoginStore.js";
+import loginStore from "@/store/loginStore.js";
 import axios from "axios";
 import {getUserInfo} from "@/services/user.js";
 import usePersonalSpaceStore from "@/store/personalSpaceStore.js";

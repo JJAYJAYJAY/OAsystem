@@ -94,7 +94,7 @@
   import {onMounted, ref, watch} from 'vue';
   import {getUserInfo} from "@/services/user.js";
   import {changeImgAction} from "@/services/user.js";
-  import useLoginStore from "@/store/LoginStore.js";
+  import useLoginStore from "@/store/loginStore.js";
   import {Message} from "@arco-design/web-vue";
 
   const loginStore = useLoginStore();

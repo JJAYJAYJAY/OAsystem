@@ -1,4 +1,4 @@
-import useLoginStore from "@/store/LoginStore.js";
+import useLoginStore from "@/store/loginStore.js";
 import axios from "axios";
 
 export const env={

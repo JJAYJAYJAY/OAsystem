@@ -79,7 +79,7 @@
 <script setup lang="js">
   import {getCurrentInstance,watch,ref,onMounted} from "vue";
   import {useRouter} from "vue-router";
-  import useLoginStore from "@/store/LoginStore.js";
+  import useLoginStore from "@/store/loginStore.js";
   import usePersonalSpaceStore from "@/store/personalSpaceStore.js";
   import emitter from "@/utils/mitter.js";
   import ChangePassword from "@/components/personalSapce/changePassword.vue";

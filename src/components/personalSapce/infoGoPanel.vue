@@ -63,7 +63,7 @@
 
 <script setup lang="js">
 import {defineProps} from "vue";
-import Gobutton from "@/components/personalSapce/gobutton.vue";
+import Gobutton from "@/components/personalSapce/goButton.vue";
 
 const props = defineProps({
   title: String,
