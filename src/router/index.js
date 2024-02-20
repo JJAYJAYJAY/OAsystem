@@ -16,9 +16,7 @@ import twoWayTable from "@/page/student/personalPage/twoWayTable.vue";
 import examSelection from "@/page/teacher/examSelection.vue";
 import successMatch from "@/page/admin/successMatch.vue";
 import adminExamSelection from "@/page/admin/adminExamSelection.vue";
-import useLoginStore from "@/store/loginStore.js";
 
-const loginStore = useLoginStore();
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -117,17 +115,17 @@ const router = createRouter({
 })
 
 //路由守卫
-router.beforeEach((to, from, next) => {
-    const isLogin = loginStore.loginSession.loginType;
-    if (to.path === '/') {
-        next('/');
-    } else {
-        if (isLogin) {
-            next();
-        } else {
-            next('/');
-        }
-    }
-})
+// router.beforeEach((to, from, next) => {
+//     const isLogin = loginStore.loginSession.loginType;
+//     if (to.path === '/') {
+//         next('/');
+//     } else {
+//         if (isLogin) {
+//             next();
+//         } else {
+//             next('/');
+//         }
+//     }
+// })
 
 export default router;
