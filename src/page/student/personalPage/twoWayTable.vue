@@ -127,7 +127,7 @@
 import {useRouter} from "vue-router";
 import {onMounted, reactive, ref} from "vue";
 import usePersonalSpaceStore from "@/store/personalSpaceStore.js";
-import {sendTwoWayTable, sendSign, getUserInfo, getSign} from "@/services/user.js";
+import {sendTwoWayTable, sendSign, getSign} from "@/services/user.js";
 import useLoginStore from "@/store/loginStore.js";
 
 const personalSpaceStore = usePersonalSpaceStore();

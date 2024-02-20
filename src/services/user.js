@@ -98,7 +98,7 @@ export function sendStudentInfo(data){
 export function sendTwoWayTable(data){
     setToken()
     return axios.request({
-        url:'/send_twoway_table',
+        url:'/send_two_way_table',
         method:"post",
         data:data,
         baseURL:env.DEV_URL
