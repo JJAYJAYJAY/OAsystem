@@ -1,10 +1,10 @@
 import {defineStore} from "pinia";
-import {reactive} from "vue";
+import {reactive, ref} from "vue";
 
 const useReasonListStore = defineStore(
     'reason',
     () => {
-        const reason = reactive([
+        const reason = ref([
             {
                 content: '',
             }

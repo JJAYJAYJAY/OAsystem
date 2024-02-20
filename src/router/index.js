@@ -13,6 +13,7 @@ import reasonList from "@/page/teacher/reasonList.vue";
 import adminApp from "@/page/admin/adminApp.vue";
 import admin from "@/page/admin/admin.vue";
 import twoWayTable from "@/page/student/personalPage/twoWayTable.vue";
+import examSelection from "@/page/teacher/examSelection.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -72,6 +73,10 @@ const router = createRouter({
                 {
                     path: 'reason',
                     component: reasonList
+                },
+                {
+                    path: 'examSelection',
+                    component: examSelection
                 }
             ]
         },

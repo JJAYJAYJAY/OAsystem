@@ -66,7 +66,6 @@
       </a-result>
     </div>
   </div>
-
 </template>
 
 <script setup lang="js">

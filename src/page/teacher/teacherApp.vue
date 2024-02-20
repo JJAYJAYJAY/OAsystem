@@ -7,7 +7,7 @@
   <header-menu>
     <menu-item @click="goReason" item-name="理由库"/>
     <menu-item @click="goMessage" item-name="我的消息"/>
-    <menu-item item-name="审批管理"/>
+    <menu-item @click="goExamSelection" item-name="审批管理"/>
   </header-menu>
   <div class="main-content">
     <router-view/>
@@ -27,5 +27,9 @@
 
   const goReason = () => {
     router.push("reason");
+  }
+
+  const goExamSelection = () => {
+    router.push("examSelection");
   }
 </script>
