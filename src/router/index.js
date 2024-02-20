@@ -14,6 +14,8 @@ import adminApp from "@/page/admin/adminApp.vue";
 import admin from "@/page/admin/admin.vue";
 import twoWayTable from "@/page/student/personalPage/twoWayTable.vue";
 import examSelection from "@/page/teacher/examSelection.vue";
+import successMatch from "@/page/admin/successMatch.vue";
+import adminExamSelection from "@/page/admin/adminExamSelection.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -95,6 +97,14 @@ const router = createRouter({
                 {
                     path: 'admin',
                     component: admin
+                },
+                {
+                    path: 'examSelection',
+                    component: adminExamSelection
+                },
+                {
+                    path: 'successMatch',
+                    component: successMatch
                 }
             ]
         }

@@ -49,17 +49,6 @@
               <a-col :span="4">
                 <a-button  v-if="bulkOperation" :disabled="buttonsDisabled" type="primary" status="danger" @click="handleExam(false)">批量拒绝</a-button>
               </a-col>
-              <a-col :span="16">
-                <a-form-item label="通过前请先上传电子签名">
-                  <a-upload
-                      :action="action"
-                      :limit="1"
-                      :headers="{ Authorization: 'Bearer ' + loginStore.loginSession.userToken }"
-                      @success="handleSuccess"
-                  >
-                  </a-upload>
-                </a-form-item>
-              </a-col>
               <a-col :span="4">
                 <a-button  v-if="bulkOperation" :disabled="buttonsDisabled" type="primary" status="success" @click="handleExam(true)">批量通过</a-button>
               </a-col>
@@ -73,22 +62,22 @@
                    :pagination="{pageSize:11}"
                    v-model:selectedKeys="selectedKeys"
           >
-            <template #studentInfo="{record}">
-              <a-button type="primary" @click="showStudentInfo(record)">查看学生信息</a-button>
+            <template #twoWayTable="{record}">
+              <a-button type="primary" @click="showTwoWayTable(record)">查看双向选择表</a-button>
             </template>
             <template #withdraw="{record}">
               <a-button
                   type="primary"
                   status="danger"
                   @click="withdraw(record)"
-                  :disabled="buttonsDisabled || record.status!=='通过老师审批' && record.status!=='未通过老师审批'"
+                  :disabled="buttonsDisabled || record.status!=='通过管理员审批' && record.status!=='未通过管理员审批'"
               >
                 撤回
               </a-button>
             </template>
           </a-table>
         </a-space>
-        <student-info :selection="detailStudentInfo" v-if="checkPage===1" :disabled="buttonsDisabled"/>
+        <two-way-table v-if="checkPage===1" :selection="selection" />
         <a-result v-if="checkPage===2" status="success" title="审批成功！" >
           <template #extra>
             <a-space>
@@ -107,18 +96,16 @@ import {getSelect} from "@/services/user.js";
 import {getReasonList} from "@/services/reasonList.js";
 import {examSelection, setExamTime, withdrawExam} from "@/services/examSelection.js";
 import {Message} from "@arco-design/web-vue";
-import StudentInfo from "@/page/teacher/studentInfo.vue";
 import emitter from "@/utils/mitter.js";
 import useReasonListStore from "@/store/reasonListStore.js";
-import {sendSign} from "@/services/user.js";
-import useLoginStore from "@/store/loginStore.js";
+import TwoWayTable from "@/page/admin/twoWayTable.vue";
 
-const loginStore=useLoginStore()
-const action = sendSign;
+
 const reasonListStore=useReasonListStore()
 const selectionList = ref([]);
 const rowSelection = ref(null);
 const bulkOperation = ref(false);
+const checkPage=ref(0)
 
 const selectedKeys = ref([]);
 const changeRowSelection = () => {
@@ -139,16 +126,21 @@ const columns = [
   {
     title: '学生姓名',
     dataIndex: 'student_name',
-    width: '300',
+    width: '200',
+  },
+  {
+    title: '老师姓名',
+    dataIndex: 'teacher_name',
+    width: '200',
   },
   {
     title: '选择状态',
     dataIndex: 'status',
-    width: '400',
+    width: '300',
   },
   {
-    title: '查看学生信息',
-    slotName: 'studentInfo',
+    title: '查看双向选择表',
+    slotName: 'twoWayTable',
   },
   {
     title: '撤回',
@@ -206,9 +198,7 @@ const withdraw=(record)=>{
   withdrawExam({
     selection_id:record.selection_id
   }).then(res=>{
-    getSelect().then(res=>{
-      selectionList.value = res.data.selections;
-    })
+    init()
     Message.success("撤回成功")
   })
 }
@@ -227,22 +217,23 @@ const calcTime=(start_time,end_time,turn)=>{
     title.value = "距离第"+turn+"轮选择开始还有";
     lastTime.value = startDate - now;
     turns.value = turn;
-    buttonsDisabled.value = true
+    buttonsDisabled.value = false
   }
   else if(endDate < now){
     lastTime.value = 0;
     title.value = "第"+turn+"轮选择已结束";
-    buttonsDisabled.value = true
+    buttonsDisabled.value = false
   }else {
     lastTime.value = endDate - now;
     turns.value = turn;
     title.value = "距离第"+turn+"轮选择结束还有";
+    buttonsDisabled.value = true
   }
 }
-const detailStudentInfo=ref({})
-const checkPage=ref(0)
-const showStudentInfo=(record)=>{
-  detailStudentInfo.value = record;
+
+const selection = ref(null);
+const showTwoWayTable=(record)=>{
+  selection.value = record;
   checkPage.value = 1;
 }
 emitter.on('goBackSelection',()=>{
@@ -259,11 +250,6 @@ const handleExam=(ispass)=>{
     return
   }
   if (ispass){
-    //检测是否上传文件了
-    if(!signSuccess.value){
-      Message.info("请先上传电子签名")
-      return;
-    }
   }else {
     if(!reason.value){
       Message.info("请填写拒绝理由")
@@ -276,15 +262,9 @@ const handleExam=(ispass)=>{
     selection_id:selectedKeys.value
   }).then(
       emitter.emit('handleSuccess')
-  ).catch((res)=>{
-    Message.error(res.data.error)
-  })
+  )
 }
 const reason=ref()
-const signSuccess=ref(false)
-const handleSuccess=()=>{
-  signSuccess.value=true
-}
 
 const showSetTime=ref(false)
 const timeRange=ref([])

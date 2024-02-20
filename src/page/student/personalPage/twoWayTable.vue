@@ -287,7 +287,7 @@ const handleSubmit = ()=>{
     math_score2: Number(form.math_score2),
     c_score1: Number(form.c_score1),
     c_score2: Number(form.c_score2),
-    self_introduction: form.self_introduction,
+    self_introduce: form.self_introduction,
     isok: form.isok
 
   }).then(res=>{

@@ -8,8 +8,8 @@
     <menu-item @click="goAdmin" item-name="管理员"/>
     <menu-item @click="goReason" item-name="理由库"/>
     <menu-item @click="goMessage" item-name="我的消息"/>
-    <menu-item item-name="配对信息"/>
-    <menu-item item-name="审批管理"/>
+    <menu-item @click="goSuccessMatch" item-name="配对信息"/>
+    <menu-item @click="goExamSelection" item-name="审批管理"/>
   </header-menu>
   <div class="main-content">
     <router-view/>
@@ -35,5 +35,10 @@ const goReason = () => {
 const goAdmin = () => {
   router.push("admin");
 }
-
+const goSuccessMatch = () => {
+  router.push("successMatch");
+}
+const goExamSelection = () => {
+  router.push("examSelection");
+}
 </script>

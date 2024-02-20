@@ -30,3 +30,13 @@ export function examSelection(data){
         baseURL:env.DEV_URL
     })
 }
+
+export function setExamTime(data){
+    setToken()
+    return axios.request({
+        url:"/set_exam_time",
+        method:"post",
+        data:data,
+        baseURL:env.DEV_URL
+    })
+}

@@ -15,12 +15,12 @@
      </a-col>
     </a-row>
     <a-card title="个人荣誉" style="height: 200px">
-      <a-scrollbar style="height: 130px">
+      <a-scrollbar style="height: 130px;white-space: pre-wrap;overflow: auto">
         {{ honor }}
       </a-scrollbar>
     </a-card>
     <a-card title="项目经历" style="height: 200px">
-      <a-scrollbar style="height: 130px">
+      <a-scrollbar style="height: 130px;white-space: pre-wrap;overflow: auto">
         {{projectExperience}}
       </a-scrollbar>
     </a-card>
@@ -60,7 +60,7 @@
 
 import emitter from "@/utils/mitter.js";
 import {onMounted, ref} from "vue";
-import {examSelection, getStudentInfo} from "@/services/examSekection.js";
+import {examSelection, getStudentInfo} from "@/services/examSelection.js";
 import useReasonListStore from "@/store/reasonListStore.js";
 import {sendSign} from "@/services/user.js";
 import useLoginStore from "@/store/loginStore.js";
@@ -166,6 +166,8 @@ const handleExam=(ispass)=>{
     selection_id:[props.selection.selection_id]
   }).then(
       emitter.emit('handleSuccess')
-  )
+  ).catch((res)=>{
+    Message.error(res.data.error)
+  })
 }
 </script>

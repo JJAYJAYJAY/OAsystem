@@ -185,15 +185,22 @@ const getSelectList=()=>{
     //     //   "selection_id": 0
     //     // }
     //   ],
-    //   start_time: "2024-03-08 04:12:14",
-    //   end_time: "1994-10-01 00:25:27",
+    //   start_time: "2024-01-08 04:12:14",
+    //   end_time: "2025-10-01 00:25:27",
     //   turns: 1
     // }
     selections.value = data.selections;
-    if (selections.value.length===0){
-      createNewSelection();
+    if(calcTime(data.start_time,data.end_time,data.turns)){
+      if (selections.value.length===0){
+        createNewSelection();
+      }
+      selections.value.sort((a,b)=>{
+        return a.selection_id-b.selection_id;
+      })
+      if(selections.value[selections.value.length-1].status===2){
+        createNewSelection()
+      }
     }
-    calcTime(data.start_time,data.end_time,data.turns);
   })
 }
 
@@ -207,14 +214,17 @@ const calcTime=(start_time,end_time,turn)=>{
     title.value = "距离第"+turn+"轮选择开始还有";
     lastTime.value = startDate - now;
     turns.value = turn;
+    return false;
   }
   else if(endDate < now){
     lastTime.value = 0;
     title.value = "第"+turn+"轮选择已结束";
+    return false;
   }else {
     lastTime.value = endDate - now;
     turns.value = turn;
     title.value = "距离第"+turn+"轮选择结束还有";
+    return true;
   }
 }
 

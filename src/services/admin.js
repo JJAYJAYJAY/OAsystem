@@ -19,3 +19,13 @@ export function setStartEndDate(data){
         baseURL: env.DEV_URL
     })
 }
+
+export function getTwoWayTable(data){
+    setToken();
+    return axios.request({
+        url: "/get_two_way_table",
+        method: "post",
+        data: data,
+        baseURL: env.DEV_URL
+    })
+}
