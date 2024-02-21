@@ -77,7 +77,7 @@
             </template>
           </a-table>
         </a-space>
-        <two-way-table v-if="checkPage===1" :selection="selection" />
+        <two-way-table v-if="checkPage===1" :selection="selection" :disabled="buttonsDisabled"/>
         <a-result v-if="checkPage===2" status="success" title="审批成功！" >
           <template #extra>
             <a-space>
@@ -259,7 +259,7 @@ const handleExam=(ispass)=>{
     }
   }
   examSelection({
-    reason:reason.value,
+    reason:reason.value?reason.value:"",
     ispass:ispass,
     selection_id:selectedKeys.value
   }).then(()=>{
