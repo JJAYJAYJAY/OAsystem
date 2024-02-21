@@ -15,6 +15,7 @@
 import {ref} from "vue";
 import {getUnmatched, setMatchedData} from "@/services/admin.js";
 import {Message} from "@arco-design/web-vue";
+import {getSelect} from "@/services/user.js";
 
 
 const columns = [
@@ -35,40 +36,46 @@ const secondMatchPreview=ref([])
 const result=ref([])
 const handleSecond = () => {
   secondMatchPreview.value = [];
-  getUnmatched().then(res => {
-    if(res.data.students.length === 0){
-      Message.info("没有未匹配的学生")
-    }else{
-      let students = res.data.students;
-      let teachers = res.data.teachers;
-      teachers = shuffle(teachers);
-      // 将学生分配给教师
-      for (let i = 0; i < students.length; i++) {
-        let student = students[i];
-        let teacher
-        let x=i;
-        while(true){
-          teacher = teachers[x % teachers.length];// 如果学生比教师多，使用模运算在教师数组中循环
-          if(teacher[2]>=6){
-            x++
-          }else{
-            teacher[2]+=1;
-            break
+  getSelect().then(res => {
+    if(res.data.turns !== 2){
+      Message.info("第一轮选择还未结束")
+    }else {
+      getUnmatched().then(res => {
+        if(res.data.students.length === 0){
+          Message.info("没有未匹配的学生")
+        }else{
+          let students = res.data.students;
+          let teachers = res.data.teachers;
+          teachers = shuffle(teachers);
+          // 将学生分配给教师
+          for (let i = 0; i < students.length; i++) {
+            let student = students[i];
+            let teacher
+            let x=i;
+            while(true){
+              teacher = teachers[x % teachers.length];// 如果学生比教师多，使用模运算在教师数组中循环
+              if(teacher[2]>=6){
+                x++
+              }else{
+                teacher[2]+=1;
+                break
+              }
+            }
+            secondMatchPreview.value.push(
+                {
+                  studentName:student[1],
+                  teacherName:teacher[1]
+                }
+            );
+            result.value.push(
+                {
+                  student:student,
+                  teacher:[teacher[0],teacher[1]]
+                }
+            )
           }
         }
-        secondMatchPreview.value.push(
-            {
-              studentName:student[1],
-              teacherName:teacher[1]
-            }
-        );
-        result.value.push(
-            {
-              student:student,
-              teacher:teacher
-            }
-        )
-      }
+      })
     }
   })
 }
