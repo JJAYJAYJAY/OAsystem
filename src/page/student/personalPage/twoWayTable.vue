@@ -288,7 +288,9 @@ const handleSubmit = ()=>{
     c_score1: Number(form.c_score1),
     c_score2: Number(form.c_score2),
     self_introduce: form.self_introduction,
-    isok: form.isok
+    isok: form.isok,
+    teacher_name: form.teacher_name,
+    phone_number: form.phone_number
 
   }).then(res=>{
     checkPage.value=1

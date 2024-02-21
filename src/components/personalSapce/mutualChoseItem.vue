@@ -87,7 +87,7 @@ a{
       return
     }
     sendStudentInfo({
-      teacher_user_id:teacherUserId.value
+      teacher_id:teacherUserId.value
     }).then(()=>{
           Message.success("发送成功")
           emitter.emit("getSelect")

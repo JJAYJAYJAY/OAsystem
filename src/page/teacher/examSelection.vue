@@ -271,7 +271,7 @@ const handleExam=(ispass)=>{
     }
   }
   examSelection({
-    reason:reason.value,
+    reason:reason.value?reason.value:"",
     ispass:ispass,
     selection_id:selectedKeys.value
   }).then(
