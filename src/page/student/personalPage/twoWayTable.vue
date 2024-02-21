@@ -261,7 +261,7 @@ const rules={
 
 onMounted(()=>{
   getSign({
-    selection_id: selectionId
+    selection_id:  Number(selectionId)
   }).then(res=>{
     teacherSign.value = "data:image/gif;base64,"+res.data.teachersign
   })

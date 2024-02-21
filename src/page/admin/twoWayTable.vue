@@ -145,7 +145,7 @@ onMounted(()=>{
     isOk.value=res.data.isok
   })
   getSign({
-    selection_id:props.selection.selection_id
+    selection_id:Number(props.selection.selection_id)
   }).then((res)=>{
     studentSign.value="data:image/gif;base64,"+res.data.studentsign
     teacherSign.value="data:image/gif;base64,"+res.data.teachersign
