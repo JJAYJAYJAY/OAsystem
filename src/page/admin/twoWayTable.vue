@@ -67,8 +67,15 @@ import {examSelection} from "@/services/examSelection.js";
 
 
 const props = defineProps({
- selection: Object,
+  selection: {
+    type: Object
+  },
+  disabled: {
+    type: Boolean
+  }
 });
+
+const buttonsDisabled = ref(props.selection.disabled?props.selection.disabled:props.disabled)
 
 const reasonListStore=useReasonListStore()
 const reason=ref()

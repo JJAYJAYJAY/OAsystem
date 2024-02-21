@@ -84,7 +84,7 @@ const props = defineProps({
   }
 })
 
-const buttonsDisabled = ref(props.disabled);
+const buttonsDisabled = ref(props.selection.disabled?props.selection.disabled:props.disabled)
 
 const action=sendSign
 
