@@ -90,7 +90,7 @@ a{
       teacher_id:teacherUserId.value
     }).then(()=>{
           Message.success("发送成功")
-          emitter.emit("getSelect")
+          emitter.emit("getSelectList")
         }
     )
   }

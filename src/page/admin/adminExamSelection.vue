@@ -148,6 +148,7 @@ const columns = [
 ];
 
 const init=()=>{
+  selectedKeys.value=[]
   getSelect().then(res=>{
     selectionList.value = res.data.selections;
     calcTime(res.data.start_time,res.data.end_time,res.data.turns);
@@ -174,9 +175,11 @@ onMounted(()=>{
           break;
         case 4:
           selectionList.value[i].status = '通过管理员审批';
+          selectionList.value[i].disabled = true;
           break;
         case 5:
           selectionList.value[i].status = '未通过管理员审批';
+          selectionList.value[i].disabled = true;
           break;
         default:
           break;
@@ -259,9 +262,12 @@ const handleExam=(ispass)=>{
     reason:reason.value,
     ispass:ispass,
     selection_id:selectedKeys.value
-  }).then(
-      emitter.emit('handleSuccess')
-  )
+  }).then(()=>{
+    init()
+    emitter.emit('handleSuccess')
+  }).catch(()=>{
+    Message.error("操作失败")
+  })
 }
 const reason=ref()
 
@@ -271,6 +277,10 @@ const handleSetTimeButton=()=>{
   showSetTime.value=!showSetTime.value
 }
 const handleSetTime=()=>{
+  if(timeRange.value.length===0){
+    Message.info("请选择时间")
+    return
+  }
   setExamTime({
     start_time:timeRange.value[0],
     end_time:timeRange.value[1]

@@ -122,7 +122,7 @@ ul li span {
             </span>
             <span>详情</span>
           </li>
-          <select-item v-for="(selection) in selections" :selection="selection"/>
+          <select-item v-for="(selection) in selections" :selection="selection" :key="selection_id"/>
         </ul>
       </div>
       <div class="innerFooter">
@@ -151,7 +151,7 @@ ul li span {
 </template>
 <script setup lang="js">
 import { useRouter } from "vue-router";
-import {onMounted, ref} from "vue";
+import {onMounted, ref, watch} from "vue";
 import SelectItem from "@/components/personalSapce/mutualChoseItem.vue";
 import {getSelect} from "@/services/user.js";
 import emitter from "@/utils/mitter.js";
@@ -173,22 +173,9 @@ onMounted(() => {
 });
 
 const getSelectList=()=>{
+  selections.value=[];
   getSelect().then(res => {
     let data=res.data;
-    // data={
-    //   selections: [
-    //     // {
-    //     //   "turns": 0,
-    //     //   "status": 0,
-    //     //   "student_name": "string",
-    //     //   "teacher_name": "string",
-    //     //   "selection_id": 0
-    //     // }
-    //   ],
-    //   start_time: "2024-01-08 04:12:14",
-    //   end_time: "2025-10-01 00:25:27",
-    //   turns: 1
-    // }
     selections.value = data.selections;
     if(calcTime(data.start_time,data.end_time,data.turns)){
       if (selections.value.length===0){
@@ -204,7 +191,7 @@ const getSelectList=()=>{
   })
 }
 
-emitter.on("getSelect",getSelectList)
+emitter.on("getSelectList",getSelectList)
 
 const calcTime=(start_time,end_time,turn)=>{
   let endDate=new Date(end_time);
