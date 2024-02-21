@@ -21,6 +21,7 @@
 <script setup lang="js">
 import { reactive } from 'vue';
 import {setStartEndDate} from "@/services/admin.js";
+import {Message} from "@arco-design/web-vue";
 
 const form = reactive([
   {
@@ -63,7 +64,7 @@ const handleSubmit = () => {
     }
   ]
   setStartEndDate(sendForm).then(res=>{
-    console.log(res)
+    Message.success('设置成功')
   })
 };
 </script>

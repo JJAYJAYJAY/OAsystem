@@ -82,6 +82,10 @@ a{
   })
 
   const handleSend=()=>{
+    if (teacherUserId.value===undefined){
+      Message.info("请选择老师")
+      return
+    }
     sendStudentInfo({
       teacher_user_id:teacherUserId.value
     }).then(()=>{

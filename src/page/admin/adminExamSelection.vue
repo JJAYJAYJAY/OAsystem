@@ -100,7 +100,6 @@ import emitter from "@/utils/mitter.js";
 import useReasonListStore from "@/store/reasonListStore.js";
 import TwoWayTable from "@/page/admin/twoWayTable.vue";
 
-
 const reasonListStore=useReasonListStore()
 const selectionList = ref([]);
 const rowSelection = ref(null);

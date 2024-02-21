@@ -147,8 +147,6 @@ onMounted(()=>{
   getSign({
     selection_id:props.selection.selection_id
   }).then((res)=>{
-    // studentSign.value="http://dummyimage.com/400x400"
-    // teacherSign.value="http://dummyimage.com/400x400"
     studentSign.value="data:image/gif;base64,"+res.data.studentsign
     teacherSign.value="data:image/gif;base64,"+res.data.teachersign
   })
