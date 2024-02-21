@@ -140,7 +140,7 @@ onMounted(()=>{
         value: student.employment_intention
       }
     ]
-    studentImg.value=student.image
+    studentImg.value="data:image/gif;base64,"+student.image
     honor.value=student.honors
     projectExperience.value=student.project_experience
   })
