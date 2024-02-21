@@ -30,10 +30,12 @@
       >
         <a-menu-item key="0">建议箱</a-menu-item>
         <a-menu-item key="2">设置起止时间</a-menu-item>
+        <a-menu-item key="3">开始第二轮随机匹配</a-menu-item>
       </a-menu>
       <suggestion-list class="right" v-if="showPage === 0" :suggestion-list="suggestionList"/>
       <suggestion-detail class="right" v-if="showPage === 1" :suggestion="detailSuggestion"/>
       <set-time class="right" v-if="showPage === 2"/>
+      <rand-match class="right" v-if="showPage === 3"/>
     </div>
   </div>
 </template>
@@ -45,6 +47,7 @@ import SetTime from "@/page/admin/components/setTime.vue";
 import {onMounted, ref} from "vue";
 import emitter from "@/utils/mitter.js";
 import {getSuggestions} from "@/services/admin.js";
+import RandMatch from "@/page/admin/components/randMatch.vue";
 
 const showPage = ref(0);
 const suggestionList = ref([]);
@@ -61,12 +64,16 @@ const handleClick = (e) => {
     case "2":
       showPage.value = 2;
       break;
+    case "3":
+      showPage.value = 3;
+      break;
   }
 }
 
 onMounted(()=>{
   handleClick("0")
 })
+
 
 emitter.on('showSuggestionDetail', (data) => {
   detailSuggestion.value = data;

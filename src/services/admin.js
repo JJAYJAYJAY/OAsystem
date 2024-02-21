@@ -29,3 +29,22 @@ export function getTwoWayTable(data){
         baseURL: env.DEV_URL
     })
 }
+
+export function getUnmatched(){
+    setToken();
+    return axios.request({
+        url: "/get_unmatched",
+        method: "get",
+        baseURL: env.DEV_URL
+    })
+}
+
+export function setMatchedData(data){
+    setToken();
+    return axios.request({
+        url: "/set_matched_data",
+        method: "post",
+        data: data,
+        baseURL: env.DEV_URL
+    })
+}
