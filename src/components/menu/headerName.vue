@@ -101,6 +101,7 @@
   const logOut= () =>{
     router.push('/');
     useLoginStore().setLogin(false,'');
+    localStorage.removeItem('Token');
   }
   const openChangPassword = () => {
     emitter.emit('openChangePassword');

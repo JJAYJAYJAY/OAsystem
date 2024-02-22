@@ -83,16 +83,13 @@ const handleSecond = () => {
 
 // Fisher-Yates（也称为 Knuth）洗牌
 function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
+  let currentIndex = array.length, temporaryValue, randomIndex;
 
-  // 当还有元素需要洗牌时...
   while (0 !== currentIndex) {
 
-    // 选择一个剩余的元素...
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
 
-    // 并与当前元素交换。
     temporaryValue = array[currentIndex];
     array[currentIndex] = array[randomIndex];
     array[randomIndex] = temporaryValue;

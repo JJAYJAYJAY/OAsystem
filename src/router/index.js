@@ -114,18 +114,22 @@ const router = createRouter({
     }
 })
 
-//路由守卫
-// router.beforeEach((to, from, next) => {
-//     const isLogin = loginStore.loginSession.loginType;
-//     if (to.path === '/') {
-//         next('/');
-//     } else {
-//         if (isLogin) {
-//             next();
-//         } else {
-//             next('/');
-//         }
-//     }
-// })
+// 路由守卫
+router.beforeEach((to, from, next) => {
+    const isLogin = localStorage.getItem('Token')?true:false;
+    console.log(isLogin);
+    if (to.path === '/') {
+        next();
+    } else {
+        if (isLogin) {
+            console.log('已登录');
+            next();
+        } else {
+            console.log('未登录');
+            next('/');
+        }
+    }
+})
+
 
 export default router;

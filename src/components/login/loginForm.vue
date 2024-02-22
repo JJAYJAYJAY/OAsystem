@@ -129,6 +129,7 @@ const handleSubmit = (e)=>{
     if(res.status === 200 && res.data.access_token){
       axios.defaults.headers.common['Authorization'] = `${res.data.token_type} ${res.data.access_token}`;
       loginStore().setLogin(true,res.data.access_token);
+      localStorage.setItem('Token',res.data.access_token);
       switch (res.data.user_type){
         case 0:
           getUserInfo().then(res=>{
