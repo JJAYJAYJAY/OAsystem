@@ -6,7 +6,7 @@
   <div>
     <a-space direction="vertical" style="width: 100%">
       <a-button @click="goBack">返回</a-button>
-      <a-descriptions :data="table" size="middle" title="学生详细信息" bordered/>
+      <a-descriptions :data="table" size="middle" title="双向选择表" bordered/>
       <a-card title="个人情况简介" style="height: 300px;">
         <a-scrollbar style="white-space: pre-wrap;height: 230px;overflow: auto" >
           {{selfIntroduction}}
