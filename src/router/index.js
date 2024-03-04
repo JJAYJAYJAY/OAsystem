@@ -116,7 +116,7 @@ const router = createRouter({
 
 // 路由守卫
 router.beforeEach((to, from, next) => {
-    const isLogin = localStorage.getItem('Token')?true:false;
+    const isLogin = sessionStorage.getItem('Token')?true:false;
     console.log(isLogin);
     if (to.path === '/') {
         next();
